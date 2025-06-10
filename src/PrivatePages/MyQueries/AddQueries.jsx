@@ -18,7 +18,7 @@ const AddQueries = () => {
       email: user?.email || "anonymous",
       name: user?.displayName || "Unknown User",
       profileImage: user?.photoURL || "",
-      createAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
       recommendationCount: 0,
     };
 
