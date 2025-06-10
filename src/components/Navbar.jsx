@@ -1,14 +1,15 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import { AuthContext } from "../Provider/AuthProvider";
+
 import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const { user, logOut } = use(AuthContext);
+  const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
