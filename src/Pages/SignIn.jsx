@@ -1,13 +1,41 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { use, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import signInLottie from "../../public/SignIn.json";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { signIn } = use(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password).then((result) => {
+      const user = result.user;
+      Swal.fire({
+        title: "Sign In Successful!",
+        text: "Your account has been loged.",
+        icon: "success",
+        confirmButtonColor: "#14b8a6",
+        confirmButtonText: "Okay",
+      });
+      navigate(`${location.state ? location.state : "/"}`, { replace: true });
+    })
+    .catch(error => {
+      toast.error('Invalid email or password')
+    })
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 flex items-center justify-center px-[4%] lg:px-[10%]py-10">
@@ -23,7 +51,7 @@ const Login = () => {
             Welcome Back
           </h2>
 
-          <form className="space-y-6">
+          <form onSubmit={handleSignIn} className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -34,7 +62,6 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
-                id="email"
                 required
                 placeholder="you@example.com"
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-400 focus:border-indigo-400 transition"
@@ -47,7 +74,6 @@ const Login = () => {
               </label>
               <input
                 type={showPassword ? "text" : "password"}
-                id="password"
                 name="password"
                 required
                 placeholder="••••••••"

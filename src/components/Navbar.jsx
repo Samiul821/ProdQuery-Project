@@ -1,10 +1,27 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { use, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const { user, logOut } = use(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        toast.success("Logged out successfully!");
+        navigate("/");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Logout failed. Please try again.");
+      });
+  };
 
   const menuVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -36,7 +53,7 @@ const Navbar = () => {
           </NavLink>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex space-x-12">
+          <div className="hidden md:flex space-x-12">
             <NavLink to="/" className={getNavLinkClass}>
               Home
             </NavLink>
@@ -45,18 +62,60 @@ const Navbar = () => {
             </NavLink>
           </div>
 
-          {/* Desktop Login Button */}
-          <div className="hidden lg:flex">
-            <Link
-              to="/auth/signIn"
-              className="inline-block px-6 py-2 rounded-md bg-indigo-600 text-white font-semibold hover:bg-indigo-700 shadow-md transition duration-300 select-none"
-            >
-              Login
-            </Link>
+          {/* Right Side */}
+          <div className="hidden md:flex items-center space-x-4 relative">
+            {!user ? (
+              <Link
+                to="/auth/signIn"
+                className="inline-block px-6 py-2 rounded-md bg-indigo-600 text-white font-semibold hover:bg-indigo-700 shadow-md transition duration-300"
+              >
+                Login
+              </Link>
+            ) : (
+              <div className="relative">
+                <button
+                  onClick={() => setShowDropdown(!showDropdown)}
+                  className="flex items-center space-x-2 focus:outline-none"
+                >
+                  <img
+                    src={user.photoURL}
+                    alt="User"
+                    className="w-10 h-10 rounded-full border border-indigo-300"
+                  />
+                  <span className="font-medium text-gray-700">
+                    {user.displayName}
+                  </span>
+                </button>
+
+                {/* Dropdown */}
+                {showDropdown && (
+                  <div className="absolute right-0 mt-2 w-44 bg-white shadow-lg rounded-md z-50 border">
+                    <Link
+                      to="/profile"
+                      className="block px-4 py-2 hover:bg-indigo-50 text-sm text-gray-700"
+                    >
+                      Profile
+                    </Link>
+                    <Link
+                      to="/dashboard"
+                      className="block px-4 py-2 hover:bg-indigo-50 text-sm text-gray-700"
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 hover:bg-red-50 text-sm text-red-600"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Mobile menu toggle */}
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
@@ -103,13 +162,42 @@ const Navbar = () => {
               >
                 Queries
               </NavLink>
-              <NavLink
-                to="/auth/signIn"
-                onClick={() => setIsOpen(false)}
-                className="block px-5 py-3 rounded-md bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition duration-300"
-              >
-                Login
-              </NavLink>
+
+              {!user ? (
+                <NavLink
+                  to="/auth/signIn"
+                  onClick={() => setIsOpen(false)}
+                  className="block px-5 py-3 rounded-md bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition duration-300"
+                >
+                  Login
+                </NavLink>
+              ) : (
+                <>
+                  <NavLink
+                    to="/profile"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-5 py-3 hover:bg-indigo-50 text-sm text-gray-700"
+                  >
+                    Profile
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-5 py-3 hover:bg-indigo-50 text-sm text-gray-700"
+                  >
+                    Dashboard
+                  </NavLink>
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setIsOpen(false);
+                    }}
+                    className="block w-full text-left px-5 py-3 hover:bg-red-50 text-sm text-red-600"
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
