@@ -1,25 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState("light");
-
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
-    } else {
-      document.documentElement.classList.add("light");
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
 
   const menuVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -43,12 +28,12 @@ const Navbar = () => {
       <div className="px-[4%] lg:px-[10%]">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link
+          <NavLink
             to="/"
             className="text-indigo-700 font-extrabold text-3xl tracking-wide hover:text-indigo-900 transition duration-300 select-none"
           >
             ProdQuery
-          </Link>
+          </NavLink>
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex space-x-12">
@@ -59,19 +44,11 @@ const Navbar = () => {
               Queries
             </NavLink>
           </div>
-          {/* Theme toggle button */}
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="ml-4 px-3 py-1 rounded bg-indigo-600 text-white hover:bg-indigo-700 transition"
-          >
-            {theme === "light" ? "Dark Mode" : "Light Mode"}
-          </button>
 
           {/* Desktop Login Button */}
           <div className="hidden lg:flex">
             <Link
-              to="/login"
+              to="/auth/signIn"
               className="inline-block px-6 py-2 rounded-md bg-indigo-600 text-white font-semibold hover:bg-indigo-700 shadow-md transition duration-300 select-none"
             >
               Login
@@ -127,7 +104,7 @@ const Navbar = () => {
                 Queries
               </NavLink>
               <NavLink
-                to="/login"
+                to="/auth/signIn"
                 onClick={() => setIsOpen(false)}
                 className="block px-5 py-3 rounded-md bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition duration-300"
               >
