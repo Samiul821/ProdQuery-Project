@@ -53,17 +53,30 @@ const Navbar = () => {
           </NavLink>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex space-x-12">
+          <div className="hidden lg:flex space-x-12">
             <NavLink to="/" className={getNavLinkClass}>
               Home
             </NavLink>
             <NavLink to="/queries" className={getNavLinkClass}>
               Queries
             </NavLink>
+            {user && (
+              <>
+                <NavLink to="/recommendationsForMe" className={getNavLinkClass}>
+                  Recommendations For Me
+                </NavLink>
+                <NavLink to="/myQueries" className={getNavLinkClass}>
+                  My Queries
+                </NavLink>
+                <NavLink to="/myRecommendations" className={getNavLinkClass}>
+                  My Recommendations
+                </NavLink>
+              </>
+            )}
           </div>
 
           {/* Right Side */}
-          <div className="hidden md:flex items-center space-x-4 relative">
+          <div className="hidden lg:flex items-center space-x-4 relative">
             {!user ? (
               <Link
                 to="/auth/signIn"
@@ -115,7 +128,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu toggle */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
@@ -162,6 +175,47 @@ const Navbar = () => {
               >
                 Queries
               </NavLink>
+
+              {user && (
+                <>
+                  <NavLink
+                    to="/recommendationsForMe"
+                    className={({ isActive }) =>
+                      `block px-5 py-3 rounded-md transition duration-300 ${
+                        isActive
+                          ? "bg-indigo-600 text-white"
+                          : "hover:bg-indigo-50 hover:text-indigo-600"
+                      }`
+                    }
+                  >
+                    Recommendations For Me
+                  </NavLink>
+                  <NavLink
+                    to="/myQueries"
+                    className={({ isActive }) =>
+                      `block px-5 py-3 rounded-md transition duration-300 ${
+                        isActive
+                          ? "bg-indigo-600 text-white"
+                          : "hover:bg-indigo-50 hover:text-indigo-600"
+                      }`
+                    }
+                  >
+                    My Queries
+                  </NavLink>
+                  <NavLink
+                    to="/myRecommendations"
+                    className={({ isActive }) =>
+                      `block px-5 py-3 rounded-md transition duration-300 ${
+                        isActive
+                          ? "bg-indigo-600 text-white"
+                          : "hover:bg-indigo-50 hover:text-indigo-600"
+                      }`
+                    }
+                  >
+                    My Recommendations
+                  </NavLink>
+                </>
+              )}
 
               {!user ? (
                 <NavLink
