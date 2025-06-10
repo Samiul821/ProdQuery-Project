@@ -2,10 +2,12 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../components/Home";
-import Queries from '../Pages/Queries'
+import Queries from "../Pages/Queries";
 import AuthLaout from "../Layout/AuthLaout";
-import SignIn from '../Pages/SignIn'
+import SignIn from "../Pages/SignIn";
 import SignUp from "../Pages/SignUp";
+import PrivateRoute from "../Provider/PrivateRoute";
+import MyProfile from "../PrivatePages/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -13,30 +15,38 @@ const router = createBrowserRouter([
     element: <MainLayout></MainLayout>,
     children: [
       {
-        path: '/',
+        path: "/",
         index: true,
         Component: Home,
       },
       {
         path: "/queries",
-        element: <Queries></Queries>
+        element: <Queries></Queries>,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
+          </PrivateRoute>
+        ),
       },
     ],
   },
   {
-   path: '/auth', 
-   element: <AuthLaout></AuthLaout>,
-   children:  [
-    {
-      path: "/auth/signIn",
-      element: <SignIn></SignIn>
-    },
-    {
-      path: '/auth/signUp',
-      element: <SignUp></SignUp>
-    }
-   ]
-  }
+    path: "/auth",
+    element: <AuthLaout></AuthLaout>,
+    children: [
+      {
+        path: "/auth/signIn",
+        element: <SignIn></SignIn>,
+      },
+      {
+        path: "/auth/signUp",
+        element: <SignUp></SignUp>,
+      },
+    ],
+  },
 ]);
 
 export default router;
