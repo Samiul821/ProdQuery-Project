@@ -70,7 +70,6 @@ const MyProfile = () => {
       animate="visible"
       exit="exit"
       className="max-w-md mx-auto mt-16 p-10 bg-gradient-to-br from-indigo-100 via-indigo-50 to-white rounded-3xl shadow-2xl border border-indigo-300"
-      style={{ fontFamily: "'Poppins', sans-serif" }}
     >
       <h2 className="text-4xl font-extrabold text-center mb-10 text-indigo-700 tracking-wide drop-shadow-md">
         My Profile

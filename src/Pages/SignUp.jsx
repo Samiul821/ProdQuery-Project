@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, updateUser, setUser } = use(AuthContext);
+  const { createUser, updateUser, setUser, googleSignIn } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -77,6 +77,21 @@ const SignUp = () => {
           confirmButtonText: "Try Again",
         });
       });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn().then((result) => {
+      const user = result.user;
+      const redirectPath = location?.state?.from?.pathname || "/";
+      navigate(redirectPath, { replace: true });
+      Swal.fire({
+        title: "Google Sign In Successful",
+
+        icon: "success",
+        confirmButtonColor: "#14b8a6",
+        confirmButtonText: "Okay",
+      });
+    });
   };
 
   return (
@@ -178,6 +193,7 @@ const SignUp = () => {
           {/* Google Button */}
           <div className="mt-6">
             <motion.button
+              onClick={handleGoogleSignIn}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}

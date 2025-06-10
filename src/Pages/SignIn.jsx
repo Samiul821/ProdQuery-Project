@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn } = use(AuthContext);
+  const { signIn, googleSignIn } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,20 +21,36 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    signIn(email, password).then((result) => {
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        Swal.fire({
+          title: "Sign In Successful!",
+          text: "Your account has been loged.",
+          icon: "success",
+          confirmButtonColor: "#14b8a6",
+          confirmButtonText: "Okay",
+        });
+        navigate(`${location.state ? location.state : "/"}`, { replace: true });
+      })
+      .catch((error) => {
+        toast.error("Invalid email or password");
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn().then((result) => {
       const user = result.user;
+      const redirectPath = location?.state?.from?.pathname || "/";
+      navigate(redirectPath, { replace: true });
       Swal.fire({
-        title: "Sign In Successful!",
-        text: "Your account has been loged.",
+        title: "Google Sign In Successful",
+
         icon: "success",
         confirmButtonColor: "#14b8a6",
         confirmButtonText: "Okay",
       });
-      navigate(`${location.state ? location.state : "/"}`, { replace: true });
-    })
-    .catch(error => {
-      toast.error('Invalid email or password')
-    })
+    });
   };
 
   return (
@@ -120,6 +136,7 @@ const Login = () => {
 
           <div className="mt-6">
             <motion.button
+              onClick={handleGoogleSignIn}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
