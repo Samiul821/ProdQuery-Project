@@ -15,8 +15,8 @@ const AddQueries = () => {
     // add extra data
     const newQuery = {
       ...data,
-      email: user?.email || "anonymous",
-      name: user?.displayName || "Unknown User",
+      hr_email: user?.email || "anonymous",
+      hr_name: user?.displayName || "Unknown User",
       profileImage: user?.photoURL || "",
       createdAt: new Date().toISOString(),
       recommendationCount: 0,
