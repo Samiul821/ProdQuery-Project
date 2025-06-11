@@ -1,35 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { myQueryPromise } from "../../Api/MyQueryApi";
 import Loading from "../../components/Loading";
 import MyQueryCard from "../../components/MyQueryCard";
+import useMyQueryApi from "../../Api/useMyQueryApi";
 
 const MyQueries = () => {
   const { user } = useAuth();
+  const myQueryPromise = useMyQueryApi();
+
   const [queries, setQueries] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user?.email) {
-      myQueryPromise(user.email)
+    if (user?.email && user.accessToken) {
+      myQueryPromise(user.email, user.accessToken)
         .then((data) => {
-          const sorted = [...data].sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-          );
-          setQueries(sorted || []);
+          setQueries(data);
           setLoading(false);
         })
-        .catch((error) => {
-          console.error("Error loading queries:", error);
+        .catch((err) => {
+          console.error("Error fetching queries:", err);
           setLoading(false);
         });
     }
-  }, [user]);
+  }, [user, myQueryPromise]);
 
   return (
     <div className="px-[4%] lg:px-[10%] py-8 min-h-screen bg-gradient-to-tr from-blue-50 via-purple-50 to-pink-50">
-      {/* Improved Banner */}
+      {/* Banner */}
       <div className="flex flex-col sm:flex-row justify-between items-center bg-gradient-to-r from-indigo-600 via-purple-700 to-pink-600 text-white rounded-xl p-8 mb-10 shadow-lg gap-6">
         <h1 className="text-4xl font-extrabold tracking-wide drop-shadow-lg">
           My Queries

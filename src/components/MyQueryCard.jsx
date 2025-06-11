@@ -10,7 +10,7 @@ const MyQueryCard = ({ query, onDelete }) => {
     productBrand,
     productImageUrl,
     queryTitle,
-    createdAt, // ⬅️ Added this line
+    createdAt,
   } = query;
 
   // Date formatting
