@@ -13,6 +13,7 @@ import MyQueries from "../PrivatePages/MyQueries/MyQueries";
 import MyRecommendations from "../PrivatePages/MyRecommendations";
 import AddQueries from "../PrivatePages/MyQueries/AddQueries";
 import Loading from "../components/Loading";
+import QueryDetails from "../PrivatePages/QueryDetails";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,17 @@ const router = createBrowserRouter([
         path: "/queries",
         element: <Queries></Queries>,
         loader: () => fetch("http://localhost:5000/allQuery"),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "/query-details/:id",
+        element: (
+          <PrivateRoute>
+            <QueryDetails></QueryDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/queryDetails/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
