@@ -9,9 +9,10 @@ import SignUp from "../Pages/SignUp";
 import PrivateRoute from "../Provider/PrivateRoute";
 import MyProfile from "../PrivatePages/MyProfile";
 import RecommendatForMe from "../PrivatePages/RecommendatForMe";
-import MyQueries from '../PrivatePages/MyQueries/MyQueries'
-import MyRecommendations from '../PrivatePages/MyRecommendations';
+import MyQueries from "../PrivatePages/MyQueries/MyQueries";
+import MyRecommendations from "../PrivatePages/MyRecommendations";
 import AddQueries from "../PrivatePages/MyQueries/AddQueries";
+import Loading from "../components/Loading";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,8 @@ const router = createBrowserRouter([
       {
         path: "/queries",
         element: <Queries></Queries>,
+        loader: () => fetch("http://localhost:5000/allQuery"),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/recommendationsForMe",
@@ -36,12 +39,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-       path: "/myQueries",
-       element: (
-        <PrivateRoute>
-          <MyQueries></MyQueries>
-        </PrivateRoute>
-       )
+        path: "/myQueries",
+        element: (
+          <PrivateRoute>
+            <MyQueries></MyQueries>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addQuerie",
@@ -49,15 +52,15 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <AddQueries></AddQueries>
           </PrivateRoute>
-        )
+        ),
       },
       {
-        path: '/myRecommendations',
+        path: "/myRecommendations",
         element: (
           <PrivateRoute>
             <MyRecommendations></MyRecommendations>
           </PrivateRoute>
-        )
+        ),
       },
       {
         path: "/profile",
