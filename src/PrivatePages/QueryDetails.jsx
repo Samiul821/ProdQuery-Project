@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuth from "../hooks/useAuth";
@@ -9,6 +9,7 @@ const QueryDetails = () => {
   const query = useLoaderData();
   const { user } = useAuth();
   const [showForm, setShowForm] = useState(false);
+  const [recommendations, setRecommendations] = useState([]);
 
   const {
     _id,
@@ -79,6 +80,19 @@ const QueryDetails = () => {
         });
       });
   };
+
+  useEffect(() => {
+    if (_id) {
+      axios
+        .get(`http://localhost:5000/recommendations?queryId=${_id}`)
+        .then((res) => {
+          setRecommendations(res.data);
+        })
+        .catch((error) => {
+          console.log("Failed to load recommendations:", error);
+        });
+    }
+  }, [_id]);
 
   return (
     <motion.div
@@ -227,6 +241,57 @@ const QueryDetails = () => {
             </motion.div>
           )}
         </AnimatePresence>
+{recommendations.length > 0 ? (
+  <div className="mt-10 space-y-4 px-4 md:px-6 lg:px-8">
+    <h2 className="text-xl md:text-2xl font-semibold text-purple-700">
+      💬 All Recommendations
+    </h2>
+    {recommendations.map((rec, index) => (
+      <div
+        key={index}
+        className="bg-white border-l-4 border-purple-500 shadow-md p-4 rounded-xl flex flex-col sm:flex-row gap-4 items-start sm:items-center"
+      >
+        <img
+          src={
+            rec.recommendedProductImage?.startsWith("http")
+              ? rec.recommendedProductImage
+              : "https://via.placeholder.com/60"
+          }
+          alt="recommended"
+          className="w-16 h-16 object-cover rounded-lg border"
+        />
+        <div className="flex-1 space-y-1">
+          <h3 className="font-semibold text-gray-800 text-base sm:text-lg">
+            {rec.recommendationTitle}
+          </h3>
+          <p className="text-sm text-gray-700">
+            <strong>Product:</strong> {rec.recommendedProductName}
+          </p>
+          <p className="text-sm text-gray-600">
+            <strong>Why:</strong> {rec.reason}
+          </p>
+          <p className="text-xs text-gray-400 mt-1">
+            By {rec.recommenderName} on{" "}
+            {new Date(rec.timestamp).toLocaleDateString()}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+) : (
+  <div className="mt-10 text-center text-gray-500 px-4">
+    <img
+      src="https://cdni.iconscout.com/illustration/premium/thumb/no-data-5335924-4452134.png"
+      alt="No recommendations"
+      className="w-40 sm:w-52 mx-auto mb-4"
+    />
+    <p className="text-lg sm:text-xl font-medium">No recommendations yet.</p>
+    <p className="text-sm text-gray-400">
+      Be the first to suggest a better alternative!
+    </p>
+  </div>
+)}
+
       </div>
     </motion.div>
   );
