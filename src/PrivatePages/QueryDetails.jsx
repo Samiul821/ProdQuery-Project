@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -8,7 +8,7 @@ import axios from "axios";
 const QueryDetails = () => {
   const query = useLoaderData();
   const { user } = useAuth();
-  console.log(user);
+  const [showForm, setShowForm] = useState(false);
 
   const {
     _id,
@@ -148,69 +148,85 @@ const QueryDetails = () => {
           </p>
         </div>
 
+        <div className="text-center">
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-5 py-2 rounded-full transition-all duration-300 shadow-md"
+          >
+            {showForm
+              ? "❌ Cancel Recommendation"
+              : "📢 Recommend an Alternative"}
+          </button>
+        </div>
+
         {/* Add Recommendation Form */}
-        <motion.div
-          className="bg-gradient-to-bl from-purple-50 via-white to-yellow-100 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg"
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          <h2 className="text-xl sm:text-2xl font-semibold text-purple-800 mb-6 text-center">
-            📝 Add a Better Alternative
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Recommendation Title
-              </label>
-              <input
-                type="text"
-                name="title"
-                placeholder="What's a better choice?"
-                className="w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring focus:ring-purple-300"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Recommended Product Name
-              </label>
-              <input
-                type="text"
-                name="productName"
-                placeholder="New product name"
-                className="w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring focus:ring-purple-300"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Recommended Product Image URL
-              </label>
-              <input
-                type="text"
-                name="productImage"
-                placeholder="https://example.com/image.jpg"
-                className="w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring focus:ring-purple-300"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Why this recommendation?
-              </label>
-              <textarea
-                rows={4}
-                name="reason"
-                placeholder="Write a short reason..."
-                className="w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring focus:ring-purple-300"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="bg-purple-600 hover:bg-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all w-full sm:w-auto"
+        <AnimatePresence>
+          {showForm && (
+            <motion.div
+              className="bg-gradient-to-bl from-purple-50 via-white to-yellow-100 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg"
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }} // ⬅️ Exit animation
+              transition={{ duration: 0.3 }}
             >
-              ✅ Submit Recommendation
-            </button>
-          </form>
-        </motion.div>
+              <h2 className="text-xl sm:text-2xl font-semibold text-purple-800 mb-6 text-center">
+                📝 Add a Better Alternative
+              </h2>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Recommendation Title
+                  </label>
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder="What's a better choice?"
+                    className="w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring focus:ring-purple-300"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Recommended Product Name
+                  </label>
+                  <input
+                    type="text"
+                    name="productName"
+                    placeholder="New product name"
+                    className="w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring focus:ring-purple-300"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Recommended Product Image URL
+                  </label>
+                  <input
+                    type="text"
+                    name="productImage"
+                    placeholder="https://example.com/image.jpg"
+                    className="w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring focus:ring-purple-300"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Why this recommendation?
+                  </label>
+                  <textarea
+                    rows={4}
+                    name="reason"
+                    placeholder="Write a short reason..."
+                    className="w-full rounded-lg px-4 py-2 border border-gray-300 focus:outline-none focus:ring focus:ring-purple-300"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="bg-purple-600 hover:bg-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all w-full sm:w-auto"
+                >
+                  ✅ Submit Recommendation
+                </button>
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );

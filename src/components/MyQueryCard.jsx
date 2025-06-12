@@ -48,7 +48,7 @@ const MyQueryCard = ({ query, onDelete }) => {
         {/* Buttons */}
         <div className="mt-4 flex flex-wrap gap-3">
           <Link
-            to={`/query/${_id}`}
+            to={`/myQueryDetails/${_id}`}
             className="flex items-center gap-2 px-4 py-2 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 transition"
           >
             <FaEye /> View

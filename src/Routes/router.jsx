@@ -14,6 +14,7 @@ import MyRecommendations from "../PrivatePages/MyRecommendations";
 import AddQueries from "../PrivatePages/MyQueries/AddQueries";
 import Loading from "../components/Loading";
 import QueryDetails from "../PrivatePages/QueryDetails";
+import MyQueryDetails from "../PrivatePages/MyQueries/MyQueryDetails";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
-        path: "/query-details/:id",
+        path: "/query/:id",
         element: (
           <PrivateRoute>
             <QueryDetails></QueryDetails>
@@ -57,6 +58,12 @@ const router = createBrowserRouter([
             <MyQueries></MyQueries>
           </PrivateRoute>
         ),
+      },
+      {
+       path: '/myQueryDetails/:id',
+       element: <PrivateRoute>
+        <MyQueryDetails></MyQueryDetails>
+       </PrivateRoute>
       },
       {
         path: "/addQuerie",

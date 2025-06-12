@@ -32,7 +32,7 @@ const AllQueryCard = ({ allQuery }) => {
         </span>
 
         <Link
-          to={`/query-details/${_id}`}
+          to={`/query/${_id}`}
           className="bg-indigo-600 text-white px-5 py-2 rounded-full shadow-lg hover:bg-indigo-700 hover:shadow-xl transition duration-300 font-semibold"
         >
           Recommend
