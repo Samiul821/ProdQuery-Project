@@ -11,7 +11,9 @@ const useAxiosSecure = () => {
   const { user, logOut } = useAuth();
 
   axiosIntance.interceptors.request.use((config) => {
-    config.headers.authorization = `Bearer ${user.accessToken}`;
+    if (user?.accessToken) {
+      config.headers.authorization = `Bearer ${user.accessToken}`;
+    }
     return config;
   });
 
@@ -20,17 +22,19 @@ const useAxiosSecure = () => {
       return response;
     },
     (error) => {
-      console.log(error);
-      if (error.status === 401 || error.status === 403) {
+      const status = error.response?.status;
+
+      if (status === 401 || status === 403) {
         logOut()
           .then(() => {
-            toast.warning("Session expired. Log in again");
+            toast.warning("Session expired. Please log in again.");
           })
           .catch((err) => {
-            console.log(err);
-            toast.error("Sign out filed.");
+            console.error("Logout failed:", err);
+            toast.error("Something went wrong during logout.");
           });
       }
+
       return Promise.reject(error);
     }
   );
