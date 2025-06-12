@@ -4,12 +4,15 @@ import useAuth from "../hooks/useAuth";
 import useMyRecommendationApi from "../Api/useMyRecommendationApi";
 import RecommendationItem from "../components/RecommendationItem ";
 import Loading from "../components/Loading";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const MyRecommendations = () => {
   const { user } = useAuth();
   const myRecommendationsPromise = useMyRecommendationApi();
 
   const [recommendations, setRecommendations] = useState([]);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,18 +29,49 @@ const MyRecommendations = () => {
     }
   }, [user, myRecommendationsPromise]);
 
-  const handleDelete = (id) => {
-    // You can add actual delete API call here later
-    setRecommendations((prev) => prev.filter((rec) => rec._id !== id));
+  const handleDelete = (id, queryId) => {
+    console.log("Deleting ID:", id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then((reslut) => {
+      if (reslut.isConfirmed) {
+        axios
+          .delete(`http://localhost:5000/my-recommendations/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount === 1) {
+              setRecommendations((prev) =>
+                prev.filter((rec) => rec._id !== id)
+              );
+
+              axios.patch(`http://localhost:5000/query/${queryId}`).then(() => {
+                console.log("Recommendation count updated!");
+              });
+
+              Swal.fire(
+                "Deleted!",
+                "Recommendation has been deleted.",
+                "success"
+              );
+            }
+          });
+      }
+    });
   };
 
   if (loading) {
-    return < Loading />;
+    return <Loading />;
   }
 
   return (
     <motion.div
-      className="px-[4%] lg:px-[10%] py-8 bg-gradient-to-tr from-blue-50 via-purple-50 to-pink-50 flex flex-col items-center"
+      className="min-h-screen px-[4%] lg:px-[10%] py-8 bg-gradient-to-tr from-blue-50 via-purple-50 to-pink-50 flex flex-col items-center"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}

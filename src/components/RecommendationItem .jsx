@@ -34,7 +34,7 @@ const RecommendationItem = ({ rec, index, onDelete }) => {
         <motion.button
           whileHover={{ scale: 1.1, backgroundColor: "#ef4444" }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => onDelete(rec._id)}
+          onClick={() => onDelete(rec._id,rec.queryId)}
           className="btn btn-sm bg-red-500 text-white rounded px-3 py-1 shadow hover:bg-red-600 focus:outline-none"
           aria-label={`Delete recommendation ${rec.queryTitle}`}
         >
