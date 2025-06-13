@@ -23,18 +23,16 @@ const MyRecommendations = () => {
           setLoading(false);
         })
         .catch((err) => {
-          console.error("Error fetching recommendations:", err);
+          console.log(err);
           setLoading(false);
         });
     }
-  }, [user, myRecommendationsPromise]);
+  }, [user]);
 
   const handleDelete = (id, queryId) => {
-    console.log("Deleting ID:", id);
-
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Are you sure you want to delete this recommendation?",
+      text: "This action cannot be undone.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
@@ -56,7 +54,7 @@ const MyRecommendations = () => {
 
               Swal.fire(
                 "Deleted!",
-                "Recommendation has been deleted.",
+                "The recommendation has been successfully deleted.",
                 "success"
               );
             }
@@ -113,7 +111,7 @@ const MyRecommendations = () => {
                   opacity: 1,
                   y: 0,
                   transition: {
-                    staggerChildren: 0.1, // প্রতিটি child কে একটু একটু সময় দিয়ে animate করবে
+                    staggerChildren: 0.1, 
                   },
                 },
               }}

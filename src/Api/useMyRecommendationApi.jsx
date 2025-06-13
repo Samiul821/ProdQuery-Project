@@ -5,8 +5,9 @@ const useMyRecommendationApi = () => {
   const axiosSecure = useAxiosSecure();
 
   const myRecommendationsPromise = async (email) => {
-    const res = await axiosSecure.get(`/my-recommendations?email=${email}`);
-    return res.data;
+    return axiosSecure
+      .get(`/my-recommendations?email=${email}`)
+      .then((res) => res.data);
   };
 
   return myRecommendationsPromise;

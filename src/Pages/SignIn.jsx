@@ -1,17 +1,17 @@
-import React, { use, useState } from "react";
+import React, {  useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import signInLottie from "../../public/SignIn.json";
-import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { signIn, googleSignIn } = use(AuthContext);
+  const { signIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,6 +34,7 @@ const Login = () => {
         navigate(`${location.state ? location.state : "/"}`, { replace: true });
       })
       .catch((error) => {
+        console.log(error);
         toast.error("Invalid email or password");
       });
   };

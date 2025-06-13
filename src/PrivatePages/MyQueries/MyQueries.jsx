@@ -24,7 +24,7 @@ const MyQueries = () => {
           setLoading(false);
         });
     }
-  }, [user, myQueryPromise]);
+  }, [user]);
 
   return (
     <div className="px-[4%] lg:px-[10%] py-8 min-h-screen bg-gradient-to-tr from-blue-50 via-purple-50 to-pink-50">

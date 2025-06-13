@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import { calcLength, motion } from "framer-motion";
@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, updateUser, setUser, googleSignIn } = use(AuthContext);
+  const { createUser, updateUser, setUser, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -62,13 +62,11 @@ const SignUp = () => {
             navigate(location.state || "/", { replace: true });
           })
           .catch((err) => {
-            console.error("Error updating profile:", err);
+            console.log(err);
             toast.error("Profile update failed.");
           });
       })
       .catch((error) => {
-        console.error("Error creating user:", error);
-
         Swal.fire({
           title: "Oops!",
           text: error.message,

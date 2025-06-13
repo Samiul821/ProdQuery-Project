@@ -19,7 +19,7 @@ const Navbar = () => {
         navigate("/");
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
         toast.error("Logout failed. Please try again.");
       });
   };
@@ -63,14 +63,14 @@ const Navbar = () => {
             </NavLink>
             {user && (
               <>
-                <NavLink to="/recommendationsForMe" className={getNavLinkClass}>
-                  Recommendations For Me
-                </NavLink>
                 <NavLink to="/myQueries" className={getNavLinkClass}>
                   My Queries
                 </NavLink>
                 <NavLink to="/myRecommendations" className={getNavLinkClass}>
                   My Recommendations
+                </NavLink>
+                <NavLink to="/recommendationsForMe" className={getNavLinkClass}>
+                  Recommendations For Me
                 </NavLink>
               </>
             )}

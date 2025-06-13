@@ -26,7 +26,6 @@ const AddQueries = () => {
     axios
       .post("http://localhost:5000/query", newQuery)
       .then((res) => {
-        console.log("Query added successfully", res.data);
         if (res.data.insertedId) {
           Swal.fire({
             icon: "success",
@@ -39,7 +38,6 @@ const AddQueries = () => {
         form.reset();
       })
       .catch((error) => {
-        console.log(error);
         Swal.fire({
           icon: "error",
           title: "Oops...",

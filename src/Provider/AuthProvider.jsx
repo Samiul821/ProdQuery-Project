@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../Firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -28,16 +29,41 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, updateData);
   };
 
-  const signIn = (email, password) => {
+  const signIn = async (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
+    const result = await signInWithEmailAndPassword(auth, email, password);
+    const idToken = await result.user.getIdToken();
+
+    await axios.post(
+      "http://localhost:5000/sessionLogin",
+      { idToken },
+      { withCredentials: true }
+    );
+
+    return result;
   };
 
-  const googleSignIn = () => {
-    return signInWithPopup(auth, googleProvider);
+  const googleSignIn = async () => {
+    setLoading(true);
+
+    const result = await signInWithPopup(auth, googleProvider);
+    const idToken = await result.user.getIdToken();
+
+    await axios.post(
+      "http://localhost:5000/sessionLogin",
+      { idToken },
+      { withCredentials: true }
+    );
+
+    return result;
   };
 
-  const logOut = () => {
+  const logOut = async () => {
+    await axios.post(
+      "http://localhost:5000/logout",
+      {},
+      { withCredentials: true }
+    );
     return signOut(auth);
   };
 

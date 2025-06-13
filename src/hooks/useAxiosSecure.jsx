@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 const axiosIntance = axios.create({
   baseURL: "http://localhost:5000",
+  withCredentials: true,
 });
 
 const useAxiosSecure = () => {
@@ -30,7 +31,7 @@ const useAxiosSecure = () => {
             toast.warning("Session expired. Please log in again.");
           })
           .catch((err) => {
-            console.error("Logout failed:", err);
+            console.log(err);
             toast.error("Something went wrong during logout.");
           });
       }
