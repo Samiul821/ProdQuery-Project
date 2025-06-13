@@ -15,6 +15,7 @@ import AddQueries from "../PrivatePages/MyQueries/AddQueries";
 import Loading from "../components/Loading";
 import QueryDetails from "../PrivatePages/QueryDetails";
 import MyQueryDetails from "../PrivatePages/MyQueries/MyQueryDetails";
+import QueryUpdated from "../PrivatePages/MyQueries/QueryUpdated";
 
 const router = createBrowserRouter([
   {
@@ -70,7 +71,14 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/myQueryDetails/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>,
       },
-     
+      {
+        path: "/update-query/:id",
+        element: <PrivateRoute>
+          <QueryUpdated></QueryUpdated>
+        </PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/myQueryDetails/${params.id}`),
+        hydrateFallbackElement: <Loading />
+      },
       {
         path: "/addQuerie",
         element: (
