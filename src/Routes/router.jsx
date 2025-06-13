@@ -60,11 +60,17 @@ const router = createBrowserRouter([
         ),
       },
       {
-       path: '/myQueryDetails/:id',
-       element: <PrivateRoute>
-        <MyQueryDetails></MyQueryDetails>
-       </PrivateRoute>
+        path: "/myQueryDetails/:id",
+        element: (
+          <PrivateRoute>
+            <MyQueryDetails></MyQueryDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/myQueryDetails/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
       },
+     
       {
         path: "/addQuerie",
         element: (
