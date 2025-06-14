@@ -129,7 +129,7 @@ const QueryDetails = () => {
       <div className="max-w-6xl mx-auto rounded-3xl p-4 sm:p-6 md:p-10 shadow-xl bg-white/80 backdrop-blur-md border border-purple-200 space-y-10">
         {/* 🔷 Query Title */}
         <motion.h1
-          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-purple-800 text-center leading-snug"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold font-poppins text-purple-800 text-center leading-snug"
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
@@ -147,7 +147,7 @@ const QueryDetails = () => {
               className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white shadow-lg object-cover"
             />
             <div>
-              <h3 className="text-base sm:text-lg font-semibold text-gray-800">
+              <h3 className="text-base sm:text-lg font-medium text-gray-800 font-poppins">
                 {hr_name}
               </h3>
               <p className="text-sm text-gray-600">{hr_email}</p>
@@ -208,7 +208,7 @@ const QueryDetails = () => {
               exit={{ scale: 0.9, opacity: 0 }} // ⬅️ Exit animation
               transition={{ duration: 0.3 }}
             >
-              <h2 className="text-xl sm:text-2xl font-semibold text-purple-800 mb-6 text-center">
+              <h2 className="text-xl sm:text-2xl font-semibold text-purple-800 mb-6 text-center font-poppins">
                 📝 Add a Better Alternative
               </h2>
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -268,7 +268,7 @@ const QueryDetails = () => {
         </AnimatePresence>
         {recommendations.length > 0 ? (
           <div className="mt-10 space-y-4 px-4 md:px-6 lg:px-8">
-            <h2 className="text-xl md:text-2xl font-semibold text-purple-700">
+            <h2 className="text-xl md:text-2xl font-semibold text-purple-700 font-poppins">
               💬 All Recommendations
             </h2>
             {recommendations.map((rec, index) => (

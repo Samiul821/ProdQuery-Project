@@ -69,7 +69,7 @@ const ModernSlider = () => {
 
             {/* Content */}
             <div className="relative z-10 flex flex-col justify-center h-full px-8 md:px-24 text-white max-w-3xl">
-              <h2 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg tracking-wide">
+              <h2 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg tracking-wide font-poppins">
                 {slide.title}
               </h2>
               <p className="mb-8 text-lg md:text-xl leading-relaxed drop-shadow-md">

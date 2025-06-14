@@ -6,6 +6,7 @@ import MyQueryCard from "../../components/MyQueryCard";
 import useMyQueryApi from "../../Api/useMyQueryApi";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 const MyQueries = () => {
   const { user } = useAuth();
@@ -52,18 +53,57 @@ const MyQueries = () => {
 
   return (
     <div className="px-[4%] lg:px-[10%] py-8 min-h-screen bg-gradient-to-tr from-blue-50 via-purple-50 to-pink-50">
-      {/* Banner */}
-      <div className="flex flex-col sm:flex-row justify-between items-center bg-gradient-to-r from-indigo-600 via-purple-700 to-pink-600 text-white rounded-xl p-8 mb-10 shadow-lg gap-6">
-        <h1 className="text-4xl font-extrabold tracking-wide drop-shadow-lg">
-          My Queries
-        </h1>
-        <Link
-          to="/addQuerie"
-          className="btn btn-primary btn-wide sm:btn-md shadow-lg hover:scale-105 transform transition"
-        >
-          Add Queries
-        </Link>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="relative w-full rounded-3xl overflow-hidden mb-10 shadow-2xl"
+      >
+        {/* ✅ Nature-Themed Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80"
+            alt="Nature Banner"
+            className="w-full h-full object-cover brightness-[0.4]"
+          />
+        </div>
+
+        {/* ✅ Content Overlay */}
+        <div className="relative z-10 px-6 py-20 sm:px-12 lg:px-24 flex flex-col sm:flex-row justify-between items-center text-white gap-6">
+          <div className="text-center sm:text-left max-w-xl">
+            <motion.h1
+              className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-xl font-poppins"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              My Queries
+            </motion.h1>
+            <motion.p
+              className="text-base md:text-lg text-indigo-100 leading-relaxed"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              Discover, ask, and share recommendations with the community.
+              Powered by nature. Inspired by you.
+            </motion.p>
+          </div>
+
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <Link
+              to="/addQuerie"
+              className="bg-white text-indigo-700 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-indigo-100 hover:scale-105 transition-transform duration-300"
+            >
+              + Add Queries
+            </Link>
+          </motion.div>
+        </div>
+      </motion.div>
 
       {/* Query List */}
       <div>

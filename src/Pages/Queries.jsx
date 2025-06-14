@@ -2,19 +2,17 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { motion } from "framer-motion";
 import AllQueryCard from "../components/AllQueryCard";
+import { Helmet } from "react-helmet-async";
 
 const Queries = () => {
   const allQuerys = useLoaderData();
   const [searchText, setSearchText] = useState("");
-  const [columns, setColumns] = useState(3); // ডিফল্ট ৩ কলাম
+  const [columns, setColumns] = useState(3);
 
-  // ফিল্টার করা কোয়েরি লিস্ট
   const filteredQuerys = allQuerys.filter((query) =>
     query.productName?.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  // Tailwind grid-cols ক্লাস ডাইনামিক সেটিং
-  // ৪ পর্যন্ত অপশন রাখা হয়েছে
   const gridColsClass = {
     1: "grid-cols-1",
     2: "sm:grid-cols-2",
@@ -25,12 +23,16 @@ const Queries = () => {
   return (
     <div className="min-h-screen px-[4%] lg:px-[10%] py-8 bg-gradient-to-br from-slate-100 to-sky-100 font-sans text-slate-900 flex flex-col items-center">
 
+      <Helmet>
+        <title>All Queries | ProdQuery</title>
+      </Helmet>
+
       {/* Heading */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl font-extrabold mb-4 text-center bg-gradient-to-r from-indigo-600 to-blue-400 bg-clip-text text-transparent"
+        className="text-4xl font-extrabold mb-4 text-center bg-gradient-to-r from-indigo-600 to-blue-400 bg-clip-text text-transparent font-poppins"
       >
         All The Queries ({filteredQuerys.length})
       </motion.h1>

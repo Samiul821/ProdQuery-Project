@@ -42,7 +42,7 @@ const MyQueryDetails = () => {
         className="max-w-5xl mx-auto p-8 rounded-3xl shadow-lg border border-gray-200 bg-gradient-to-tr from-purple-50 via-pink-50 to-yellow-50"
       >
         {/* Title */}
-        <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-10 tracking-wide">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-10 tracking-wide font-poppins">
           🔍 Product Query Details
         </h2>
 
@@ -59,7 +59,7 @@ const MyQueryDetails = () => {
             className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-xl shadow-md border border-gray-300"
           />
           <div className="text-center md:text-left">
-            <h3 className="text-2xl font-semibold text-gray-900">
+            <h3 className="text-2xl font-semibold text-gray-900 font-poppins">
               {productName}
             </h3>
             <p className="text-gray-500 mt-1 text-lg">Brand: {productBrand}</p>

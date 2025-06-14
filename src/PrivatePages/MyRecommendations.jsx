@@ -74,7 +74,7 @@ const MyRecommendations = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <h2 className="text-3xl font-semibold mb-6 text-gray-800">
+      <h2 className="text-3xl font-semibold mb-6 text-gray-800 font-poppins">
         My Recommendations
       </h2>
 

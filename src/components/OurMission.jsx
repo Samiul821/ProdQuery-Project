@@ -27,7 +27,7 @@ const OurMission = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight font-poppins">
             Our Mission
           </h2>
           <p className="mb-6 text-lg md:text-xl leading-relaxed max-w-lg">

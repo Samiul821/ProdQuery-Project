@@ -66,7 +66,7 @@ const cardVariants = {
 const FeaturesSection = () => {
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
-      <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">
+      <h2 className="text-4xl font-semibold mb-12 text-center text-gray-900 font-poppins">
         Why Choose Us
       </h2>
       <motion.div
@@ -84,7 +84,7 @@ const FeaturesSection = () => {
             whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0,0,0,0.15)" }}
           >
             <div className="text-4xl mb-4">{icon}</div>
-            <h3 className="text-xl font-semibold mb-2">{title}</h3>
+            <h3 className="text-xl font-medium mb-2 font-poppins">{title}</h3>
             <p className="text-gray-600">{description}</p>
           </motion.div>
         ))}

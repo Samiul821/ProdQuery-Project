@@ -67,7 +67,7 @@ const QueryUpdated = () => {
 
         {/* Form Card */}
         <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 w-full p-6 sm:p-10 md:p-12 lg:p-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-10 tracking-wide">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 tracking-wide font-poppins">
             Update Your Product Query
           </h2>
 

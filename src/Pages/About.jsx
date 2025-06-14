@@ -10,7 +10,7 @@ const About = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center font-poppins">
           About ProdQuery
         </h1>
         <p className="text-lg leading-relaxed text-gray-600 text-center max-w-3xl mx-auto">

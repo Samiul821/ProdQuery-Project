@@ -41,7 +41,7 @@ const FAQSection = () => {
         transition={{ duration: 0.6 }}
         className="max-w-4xl mx-auto text-center"
       >
-        <h2 className="text-4xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
+        <h2 className="text-4xl font-bold mb-6 text-gray-800 font-poppins">Frequently Asked Questions</h2>
         <p className="text-gray-600 mb-12">
           Get answers to common questions about using our platform.
         </p>

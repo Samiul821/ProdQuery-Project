@@ -10,7 +10,7 @@ const TermsAndConditions = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center font-poppins">
           Terms & Conditions
         </h1>
 
@@ -19,29 +19,29 @@ const TermsAndConditions = () => {
             Welcome to ProdQuery. These terms and conditions outline the rules and regulations for the use of our platform.
           </p>
 
-          <h2 className="text-xl font-semibold mt-8">1. Acceptance of Terms</h2>
+          <h2 className="text-xl font-medium mt-8 font-poppins">1. Acceptance of Terms</h2>
           <p>
             By accessing or using ProdQuery, you agree to be bound by these Terms & Conditions. If you disagree with any part of the terms, you must not use this website.
           </p>
 
-          <h2 className="text-xl font-semibold mt-8">2. User Responsibilities</h2>
+          <h2 className="text-xl font-medium mt-8 font-poppins">2. User Responsibilities</h2>
           <ul className="list-disc ml-5 space-y-2">
             <li>You are responsible for maintaining the confidentiality of your account information.</li>
             <li>You agree to provide accurate, current, and complete information when using the platform.</li>
             <li>You must not use the platform for any illegal or unauthorized purpose.</li>
           </ul>
 
-          <h2 className="text-xl font-semibold mt-8">3. Content Ownership</h2>
+          <h2 className="text-xl font-medium mt-8 font-poppins">3. Content Ownership</h2>
           <p>
             All content submitted by users remains their property. However, by posting on ProdQuery, you grant us a non-exclusive license to use, display, and distribute the content for platform-related purposes.
           </p>
 
-          <h2 className="text-xl font-semibold mt-8">4. Limitation of Liability</h2>
+          <h2 className="text-xl font-medium mt-8 font-poppins">4. Limitation of Liability</h2>
           <p>
             ProdQuery is not liable for any direct, indirect, or consequential loss or damage incurred by users in connection with the use of our platform.
           </p>
 
-          <h2 className="text-xl font-semibold mt-8">5. Changes to Terms</h2>
+          <h2 className="text-xl font-medium mt-8 font-poppins">5. Changes to Terms</h2>
           <p>
             We reserve the right to modify these Terms & Conditions at any time. Changes will be posted on this page with an updated revision date.
           </p>

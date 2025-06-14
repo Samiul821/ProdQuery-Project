@@ -14,7 +14,7 @@ const Footer = () => {
       >
         {/* Brand Info */}
         <div>
-          <h3 className="text-2xl font-bold text-white mb-4">ProdQuery</h3>
+          <h3 className="text-2xl font-bold text-white mb-4 font-poppins">ProdQuery</h3>
           <p className="text-sm text-gray-400">
             Empowering consumers through transparency. Join our mission to make
             ethical choices easier and more accessible.
@@ -23,7 +23,7 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div>
-          <h4 className="text-xl font-semibold text-white mb-4">Quick Links</h4>
+          <h4 className="text-xl font-semibold text-white mb-4 font-poppins">Quick Links</h4>
           <ul className="space-y-2 text-sm">
             <li>
               <a href="/" className="hover:text-white">
@@ -56,7 +56,7 @@ const Footer = () => {
 
         {/* Social Media */}
         <div>
-          <h4 className="text-xl font-semibold text-white mb-4">
+          <h4 className="text-xl font-semibold text-white mb-4 font-poppins">
             Connect With Us
           </h4>
           <div className="flex space-x-4">

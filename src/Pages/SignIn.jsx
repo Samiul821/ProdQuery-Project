@@ -64,7 +64,7 @@ const Login = () => {
       >
         {/* Left Side - Form */}
         <div className="w-full md:w-1/2">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6 text-center md:text-left font-inter">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-6 text-center md:text-left font-poppins">
             Welcome Back
           </h2>
 

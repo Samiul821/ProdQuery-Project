@@ -5,12 +5,18 @@ import OurMission from "./OurMission";
 import { useLoaderData } from "react-router-dom";
 import RecentQueryCard from "./RecentQueryCard";
 import FeaturesSection from "./Features";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const recentQuery = useLoaderData();
 
   return (
     <main className="px-[4%] lg:px-[10%] py-8 bg-gradient-to-br from-[#f0fdf4] to-white space-y-10">
+      
+      <Helmet>
+        <title>Home | ProdQuery</title>
+      </Helmet>
+
       <header>
         <Slider></Slider>
       </header>
@@ -18,7 +24,7 @@ const Home = () => {
       <section>
         <div>
           <div className="text-center mb-14 px-2">
-            <h1 className="text-3xl md:text-4xl xl:text-5xl font-extrabold text-gray-800 flex items-center justify-center gap-3">
+            <h1 className="text-3xl md:text-4xl xl:text-5xl font-extrabold text-gray-800 flex items-center justify-center gap-3 font-poppins">
               Recent Queries
             </h1>
             <p className="text-gray-500 text-base md:text-lg mt-3 max-w-3xl mx-auto">

@@ -23,18 +23,15 @@ const RecentQueryCard = ({ query }) => {
         borderColor: "rgba(99, 102, 241, 0.5)",
       }}
       transition={{ duration: 0.3 }}
-      className="bg-white border border-gray-200 rounded-xl overflow-hidden cursor-pointer 
-                 shadow-sm 
-                 "
+      className="bg-white border border-gray-200 rounded-xl overflow-hidden cursor-pointer shadow-sm"
     >
       <img
         src={productImageUrl}
         alt={productName}
-        className="w-full object-cover
-                   h-36 sm:h-44 md:h-56"
+        className="w-full object-cover h-36 sm:h-44 md:h-56"
       />
       <div className="p-4 sm:p-5 flex flex-col">
-        <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 line-clamp-2">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 line-clamp-2 font-poppins">
           {queryTitle}
         </h2>
         <p className="text-gray-600 text-sm mb-1">

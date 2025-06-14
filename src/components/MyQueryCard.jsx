@@ -38,7 +38,7 @@ const MyQueryCard = ({ query, onDelete }) => {
 
       {/* Content */}
       <div className="p-4 flex flex-col gap-2">
-        <h2 className="text-lg font-semibold text-gray-800">{queryTitle}</h2>
+        <h2 className="text-lg font-medium text-gray-800 font-poppins">{queryTitle}</h2>
         <p className="text-sm text-gray-500">
           <span className="font-medium">Product:</span> {productName} (
           {productBrand})

@@ -48,7 +48,7 @@ const Navbar = () => {
           {/* Logo */}
           <NavLink
             to="/"
-            className="text-indigo-700 font-extrabold text-3xl tracking-wide hover:text-indigo-900 transition duration-300 select-none"
+            className="text-indigo-700 font-bold text-3xl tracking-wide hover:text-indigo-900 transition duration-300 select-none font-poppins"
           >
             ProdQuery
           </NavLink>

@@ -21,7 +21,7 @@ const AllQueryCard = ({ allQuery }) => {
       </div>
 
       {/* Title */}
-      <h3 className="text-lg md:text-xl font-semibold text-indigo-900 mb-4 leading-tight line-clamp-2">
+      <h3 className="text-lg md:text-xl font-semibold text-indigo-900 mb-4 leading-tight line-clamp-2 font-poppins">
         {queryTitle}
       </h3>
 
