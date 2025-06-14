@@ -24,18 +24,18 @@ const useAxiosSecure = () => {
       return response;
     },
     (error) => {
-      // const status = error.response?.status;
+      const status = error.response?.status;
 
-      // if (status === 401 || status === 403) {
-      //   logOut()
-      //     .then(() => {
-      //       toast.warning("Session expired. Please log in again.");
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //       toast.error("Something went wrong during logout.");
-      //     });
-      // }
+      if (status === 401 || status === 403) {
+        logOut()
+          .then(() => {
+            toast.warning("Session expired. Please log in again.");
+          })
+          .catch((err) => {
+            console.log(err);
+            toast.error("Something went wrong during logout.");
+          });
+      }
 
       return Promise.reject(error);
     }
