@@ -4,6 +4,8 @@ import useAuth from "../../hooks/useAuth";
 import Loading from "../../components/Loading";
 import MyQueryCard from "../../components/MyQueryCard";
 import useMyQueryApi from "../../Api/useMyQueryApi";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const MyQueries = () => {
   const { user } = useAuth();
@@ -25,6 +27,28 @@ const MyQueries = () => {
         });
     }
   }, [user]);
+
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((reslut) => {
+      if (reslut.isConfirmed) {
+        axios.delete(`http://localhost:5000/query/${_id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            const remaining = queries.filter((query) => query._id !== _id);
+            setQueries(remaining);
+            Swal.fire("Deleted!", "Your query has been deleted.", "success");
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div className="px-[4%] lg:px-[10%] py-8 min-h-screen bg-gradient-to-tr from-blue-50 via-purple-50 to-pink-50">
@@ -60,7 +84,11 @@ const MyQueries = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {queries.map((query) => (
-              <MyQueryCard key={query._id} query={query} />
+              <MyQueryCard
+                key={query._id}
+                query={query}
+                onDelete={handleDelete}
+              />
             ))}
           </div>
         )}

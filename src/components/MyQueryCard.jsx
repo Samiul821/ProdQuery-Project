@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+
 
 const MyQueryCard = ({ query, onDelete }) => {
   const {
@@ -12,6 +13,7 @@ const MyQueryCard = ({ query, onDelete }) => {
     queryTitle,
     createdAt,
   } = query;
+
 
   // Date formatting
   const formattedDate = createdAt
