@@ -41,14 +41,14 @@ const MyRecommendations = () => {
     }).then((reslut) => {
       if (reslut.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/my-recommendations/${id}`)
+          .delete(`https://prod-query-backend.vercel.app/my-recommendations/${id}`)
           .then((res) => {
             if (res.data.deletedCount === 1) {
               setRecommendations((prev) =>
                 prev.filter((rec) => rec._id !== id)
               );
 
-              axios.patch(`http://localhost:5000/query/${queryId}`).then(() => {
+              axios.patch(`https://prod-query-backend.vercel.app/query/${queryId}`).then(() => {
                 console.log("Recommendation count updated!");
               });
 

@@ -4,8 +4,8 @@ import useAuth from "./useAuth";
 import { toast } from "react-toastify";
 
 const axiosIntance = axios.create({
-  baseURL: "http://localhost:5000",
-  // baseURL: "http://localhost:5000",
+  baseURL: "https://prod-query-backend.vercel.app",
+  // baseURL: "https://prod-query-backend.vercel.app",
   withCredentials: true,
 });
 
