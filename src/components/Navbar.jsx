@@ -9,7 +9,7 @@ import useAuth from "../hooks/useAuth";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const { user, logOut } = useAuth();
+  const { user, logOut,  } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -75,6 +75,13 @@ const Navbar = () => {
               </>
             )}
           </div>
+
+          {/* <button
+            onClick={toggleTheme}
+            className="px-3 py-2 rounded-md text-sm font-semibold border hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+          >
+            {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+          </button> */}
 
           {/* Right Side */}
           <div className="hidden lg:flex items-center space-x-4 relative">

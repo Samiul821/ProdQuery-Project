@@ -20,6 +20,25 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+//  const [theme, setTheme] = useState(() => {
+//   return localStorage.getItem("theme") || "light";
+// });
+
+// useEffect(() => {
+//   localStorage.setItem("theme", theme);
+
+//   if (theme === "dark") {
+//     document.documentElement.classList.add("dark");
+//   } else {
+//     document.documentElement.classList.remove("dark");
+//   }
+// }, [theme]);
+
+// const toggleTheme = () => {
+//   setTheme((prev) => (prev === "light" ? "dark" : "light"));
+// };
+
+
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -35,7 +54,7 @@ const AuthProvider = ({ children }) => {
     const idToken = await result.user.getIdToken();
 
     await axios.post(
-      "https://prod-query-backend.vercel.app/sessionLogin",
+      "http://localhost:5000/sessionLogin",
       { idToken },
       { withCredentials: true }
     );
@@ -50,7 +69,7 @@ const AuthProvider = ({ children }) => {
     const idToken = await result.user.getIdToken();
 
     await axios.post(
-      "https://prod-query-backend.vercel.app/sessionLogin",
+      "http://localhost:5000/sessionLogin",
       { idToken },
       { withCredentials: true }
     );
@@ -60,7 +79,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     await axios.post(
-      "https://prod-query-backend.vercel.app/logout",
+      "http://localhost:5000/logout",
       {},
       { withCredentials: true }
     );
