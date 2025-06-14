@@ -39,7 +39,7 @@ const MyQueries = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((reslut) => {
       if (reslut.isConfirmed) {
-        axios.delete(`http://localhost:5000/query/${_id}`).then((res) => {
+        axios.delete(`https://prod-query-backend.vercel.app/query/${_id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             const remaining = queries.filter((query) => query._id !== _id);
             setQueries(remaining);

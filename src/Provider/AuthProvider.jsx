@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
     const idToken = await result.user.getIdToken();
 
     await axios.post(
-      "http://localhost:5000/sessionLogin",
+      "https://prod-query-backend.vercel.app/sessionLogin",
       { idToken },
       { withCredentials: true }
     );
@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
     const idToken = await result.user.getIdToken();
 
     await axios.post(
-      "http://localhost:5000/sessionLogin",
+      "https://prod-query-backend.vercel.app/sessionLogin",
       { idToken },
       { withCredentials: true }
     );
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     await axios.post(
-      "http://localhost:5000/logout",
+      "https://prod-query-backend.vercel.app/logout",
       {},
       { withCredentials: true }
     );

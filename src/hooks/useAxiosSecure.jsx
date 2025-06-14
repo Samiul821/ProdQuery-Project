@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { toast } from "react-toastify";
 
 const axiosIntance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://prod-query-backend.vercel.app",
   withCredentials: true,
 });
 
@@ -23,18 +23,18 @@ const useAxiosSecure = () => {
       return response;
     },
     (error) => {
-      const status = error.response?.status;
+      // const status = error.response?.status;
 
-      if (status === 401 || status === 403) {
-        logOut()
-          .then(() => {
-            toast.warning("Session expired. Please log in again.");
-          })
-          .catch((err) => {
-            console.log(err);
-            toast.error("Something went wrong during logout.");
-          });
-      }
+      // if (status === 401 || status === 403) {
+      //   logOut()
+      //     .then(() => {
+      //       toast.warning("Session expired. Please log in again.");
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //       toast.error("Something went wrong during logout.");
+      //     });
+      // }
 
       return Promise.reject(error);
     }
