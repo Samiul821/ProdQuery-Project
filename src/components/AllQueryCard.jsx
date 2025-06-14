@@ -1,14 +1,12 @@
 import React from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AllQueryCard = ({ allQuery }) => {
   const { _id, queryTitle, recommendationCount, productImageUrl, productName } =
     allQuery;
 
-
   return (
     <div className="bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-6 flex flex-col">
-    
       {/* Product Image */}
       <div className="relative w-full h-48 mb-5 rounded-xl overflow-hidden shadow-md border border-indigo-200">
         <img
@@ -26,6 +24,12 @@ const AllQueryCard = ({ allQuery }) => {
       <h3 className="text-lg md:text-xl font-semibold text-indigo-900 mb-4 leading-tight line-clamp-2">
         {queryTitle}
       </h3>
+
+      {/* Product Name */}
+      <p className="text-sm text-gray-600 italic mb-4">
+        🛍 Product:{" "}
+        <span className="font-medium text-indigo-800">{productName}</span>
+      </p>
 
       {/* Recommendations and Button */}
       <div className="mt-auto flex items-center justify-between">
