@@ -1,12 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 const AllQueryCard = ({ allQuery }) => {
   const { _id, queryTitle, recommendationCount, productImageUrl, productName } =
     allQuery;
 
+  const navigate = useNavigate()
+
   return (
     <div className="bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-6 flex flex-col">
+      {/* Back Button */}
+            <button
+              onClick={() => navigate(-1)}
+              className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-white font-semibold shadow-md hover:brightness-110 transition"
+            >
+              <FaArrowLeft /> Back
+            </button>
       {/* Product Image */}
       <div className="relative w-full h-48 mb-5 rounded-xl overflow-hidden shadow-md border border-indigo-200">
         <img

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 const axiosIntance = axios.create({
   baseURL: "https://prod-query-backend.vercel.app",
+  // baseURL: "http://localhost:5000",
   withCredentials: true,
 });
 
