@@ -4,6 +4,8 @@ import Slider from "./Slider";
 import OurMission from "./OurMission";
 import { useLoaderData } from "react-router-dom";
 import RecentQueryCard from "./RecentQueryCard";
+import OurValues from "./FAQSection";
+import FeaturesSection from "./Features";
 
 const Home = () => {
   const recentQuery = useLoaderData();
@@ -18,7 +20,7 @@ const Home = () => {
         <div>
           <div className="text-center mb-14 px-2">
             <h1 className="text-3xl md:text-4xl xl:text-5xl font-extrabold text-gray-800 flex items-center justify-center gap-3">
-              Recent Queries ({recentQuery.length})
+              Recent Queries
             </h1>
             <p className="text-gray-500 text-base md:text-lg mt-3 max-w-3xl mx-auto">
               Discover alternative products shared by our conscious community
@@ -31,6 +33,9 @@ const Home = () => {
             ))}
           </div>
         </div>
+      </section>
+      <section>
+       <FeaturesSection></FeaturesSection>
       </section>
       <section>
         <OurMission></OurMission>

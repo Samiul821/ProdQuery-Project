@@ -55,7 +55,7 @@ const ModernSlider = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto rounded-lg overflow-hidden shadow-2xl">
+    <div className=" rounded-lg overflow-hidden shadow-2xl">
       <Slider {...settings}>
         {sliderData.map((slide) => (
           <div key={slide.id} className="relative h-96 md:h-[500px]">
