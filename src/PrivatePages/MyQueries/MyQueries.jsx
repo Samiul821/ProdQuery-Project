@@ -7,6 +7,7 @@ import useMyQueryApi from "../../Api/useMyQueryApi";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const MyQueries = () => {
   const { user } = useAuth();
@@ -53,6 +54,11 @@ const MyQueries = () => {
 
   return (
     <div className="px-[4%] lg:px-[10%] py-8 min-h-screen bg-gradient-to-tr from-blue-50 via-purple-50 to-pink-50">
+      
+      <Helmet>
+        <title>My Query | ProdQuery</title>
+      </Helmet>
+      
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

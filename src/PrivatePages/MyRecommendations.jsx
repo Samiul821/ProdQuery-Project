@@ -6,6 +6,7 @@ import RecommendationItem from "../components/RecommendationItem ";
 import Loading from "../components/Loading";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const MyRecommendations = () => {
   const { user } = useAuth();
@@ -41,16 +42,20 @@ const MyRecommendations = () => {
     }).then((reslut) => {
       if (reslut.isConfirmed) {
         axios
-          .delete(`https://prod-query-backend.vercel.app/my-recommendations/${id}`)
+          .delete(
+            `https://prod-query-backend.vercel.app/my-recommendations/${id}`
+          )
           .then((res) => {
             if (res.data.deletedCount === 1) {
               setRecommendations((prev) =>
                 prev.filter((rec) => rec._id !== id)
               );
 
-              axios.patch(`https://prod-query-backend.vercel.app/query/${queryId}`).then(() => {
-                console.log("Recommendation count updated!");
-              });
+              axios
+                .patch(`https://prod-query-backend.vercel.app/query/${queryId}`)
+                .then(() => {
+                  console.log("Recommendation count updated!");
+                });
 
               Swal.fire(
                 "Deleted!",
@@ -74,6 +79,10 @@ const MyRecommendations = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
+      <Helmet>
+        <title>My Recommendations | ProdQuery</title>
+      </Helmet>
+
       <h2 className="text-3xl font-semibold mb-6 text-gray-800 font-poppins">
         My Recommendations
       </h2>
@@ -111,7 +120,7 @@ const MyRecommendations = () => {
                   opacity: 1,
                   y: 0,
                   transition: {
-                    staggerChildren: 0.1, 
+                    staggerChildren: 0.1,
                   },
                 },
               }}

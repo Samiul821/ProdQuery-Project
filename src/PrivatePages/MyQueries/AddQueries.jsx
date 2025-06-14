@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const AddQueries = () => {
   const { user } = useAuth();
@@ -53,6 +54,11 @@ const AddQueries = () => {
 
   return (
     <div className="bg-gradient-to-br from-green-50 via-white to-blue-50 flex items-center justify-center px-[4%] lg:px-[10%] py-10">
+
+      <Helmet>
+        <title>Add Query | ProdQuery</title>
+      </Helmet>
+
       <div className="w-full max-w-3xl">
         {/* Back Button */}
         <button

@@ -2,10 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowLeft } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const ErrorPage = () => {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-indigo-200 via-white to-indigo-100 flex items-center justify-center px-4 overflow-hidden">
+      
+      <Helmet>
+        <title>Error | Prod Query</title>
+      </Helmet>
+
       {/* Background Decoration Circles */}
       <motion.div
         className="absolute w-72 h-72 bg-indigo-300 rounded-full top-[-50px] left-[-50px] opacity-20 blur-2xl"

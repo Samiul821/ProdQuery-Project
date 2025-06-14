@@ -9,6 +9,7 @@ import {
   FaCalendarAlt,
   FaExclamationCircle,
 } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const MyQueryDetails = () => {
   const navigate = useNavigate();
@@ -28,6 +29,11 @@ const MyQueryDetails = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 via-gray-50 to-gray-100 py-12 px-[4%] lg:px-[10%]">
+
+     <Helmet>
+      <title>My Query Details | ProdQuery</title>
+     </Helmet>
+
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}

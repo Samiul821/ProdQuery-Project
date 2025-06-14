@@ -3,6 +3,7 @@ import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const containerVariants = {
   hidden: { opacity: 0, y: -40, scale: 0.9 },
@@ -70,6 +71,10 @@ const MyProfile = () => {
       exit="exit"
       className="max-w-3xl w-full mx-auto my-16 px-6 py-10 bg-white/50 backdrop-blur-md rounded-3xl shadow-xl border border-indigo-200 md:px-10"
     >
+      <Helmet>
+        <title>My Profile | ProdQurey</title>
+      </Helmet>
+
       <h2 className="text-3xl md:text-5xl font-bold text-center mb-10 text-indigo-700 tracking-wide drop-shadow font-poppins">
         My Profile
       </h2>
@@ -81,7 +86,9 @@ const MyProfile = () => {
           className="rounded-full overflow-hidden w-32 h-32 md:w-40 md:h-40 border-4 border-indigo-400 shadow-xl"
         >
           <img
-            src={user?.photoURL || "https://i.ibb.co/6W5zW9y/user-placeholder.png"}
+            src={
+              user?.photoURL || "https://i.ibb.co/6W5zW9y/user-placeholder.png"
+            }
             alt="Profile"
             className="object-cover w-full h-full"
           />
@@ -90,7 +97,9 @@ const MyProfile = () => {
           <h3 className="text-2xl md:text-3xl font-semibold text-indigo-800">
             {user?.displayName || "No Name"}
           </h3>
-          <p className="text-indigo-600 text-base md:text-lg mt-2">{user?.email}</p>
+          <p className="text-indigo-600 text-base md:text-lg mt-2">
+            {user?.email}
+          </p>
         </div>
       </div>
 
@@ -121,7 +130,9 @@ const MyProfile = () => {
               initial="blur"
               animate={focusedInput === "name" ? "focus" : "blur"}
             >
-              <label className="block mb-2 text-indigo-700 font-medium">Name</label>
+              <label className="block mb-2 text-indigo-700 font-medium">
+                Name
+              </label>
               <input
                 type="text"
                 value={name}
@@ -140,7 +151,9 @@ const MyProfile = () => {
               initial="blur"
               animate={focusedInput === "photo" ? "focus" : "blur"}
             >
-              <label className="block mb-2 text-indigo-700 font-medium">Photo URL</label>
+              <label className="block mb-2 text-indigo-700 font-medium">
+                Photo URL
+              </label>
               <input
                 type="url"
                 value={photo}

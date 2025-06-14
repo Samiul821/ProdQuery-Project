@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const faqs = [
   {
@@ -34,6 +35,11 @@ const FAQSection = () => {
 
   return (
     <section className="bg-gray-100 py-16 px-4 md:px-12 lg:px-32">
+
+      <Helmet>
+        <title>FAQ | ProdQuery</title>
+      </Helmet>
+
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

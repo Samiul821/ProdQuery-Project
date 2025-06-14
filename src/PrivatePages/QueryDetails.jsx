@@ -5,6 +5,7 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const QueryDetails = () => {
   const query = useLoaderData();
@@ -119,6 +120,10 @@ const QueryDetails = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+     <Helmet>
+      <title>Queries Details | ProdQuery</title>
+     </Helmet>
+
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}

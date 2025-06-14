@@ -8,6 +8,7 @@ import signInLottie from "../../public/SignIn.json";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -56,6 +57,11 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 flex items-center justify-center px-[4%] lg:px-[10%]py-10">
+    
+      <Helmet>
+        <title>Sign In | ProdQuery</title>
+      </Helmet>
+
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

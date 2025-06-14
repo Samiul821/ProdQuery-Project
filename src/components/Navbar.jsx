@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-
+import NavLog from "../assets/Nav logo.png";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const { user, logOut,  } = useAuth();
+  const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -46,11 +46,12 @@ const Navbar = () => {
       <div className="px-[4%] lg:px-[10%]">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <NavLink
-            to="/"
-            className="text-indigo-700 font-bold text-3xl tracking-wide hover:text-indigo-900 transition duration-300 select-none font-poppins"
-          >
-            ProdQuery
+          <NavLink to="/" className="flex items-center space-x-2">
+            <img
+              src={NavLog}
+              alt="ProdQuery Logo"
+              className="h-32 w-auto object-contain drop-shadow-sm"
+            />
           </NavLink>
 
           {/* Desktop Nav */}
@@ -187,18 +188,6 @@ const Navbar = () => {
               {user && (
                 <>
                   <NavLink
-                    to="/recommendationsForMe"
-                    className={({ isActive }) =>
-                      `block px-5 py-3 rounded-md transition duration-300 ${
-                        isActive
-                          ? "bg-indigo-600 text-white"
-                          : "hover:bg-indigo-50 hover:text-indigo-600"
-                      }`
-                    }
-                  >
-                    Recommendations For Me
-                  </NavLink>
-                  <NavLink
                     to="/myQueries"
                     className={({ isActive }) =>
                       `block px-5 py-3 rounded-md transition duration-300 ${
@@ -221,6 +210,18 @@ const Navbar = () => {
                     }
                   >
                     My Recommendations
+                  </NavLink>
+                  <NavLink
+                    to="/recommendationsForMe"
+                    className={({ isActive }) =>
+                      `block px-5 py-3 rounded-md transition duration-300 ${
+                        isActive
+                          ? "bg-indigo-600 text-white"
+                          : "hover:bg-indigo-50 hover:text-indigo-600"
+                      }`
+                    }
+                  >
+                    Recommendations For Me
                   </NavLink>
                 </>
               )}

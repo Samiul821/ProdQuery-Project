@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { FaArrowLeft } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -56,6 +57,11 @@ const QueryUpdated = () => {
 
   return (
     <div className="bg-gradient-to-br from-green-50 via-white to-blue-50 flex items-center justify-center px-[4%] lg:px-[10%] py-10">
+ 
+      <Helmet>
+        <title>Qurey Update | ProdQurey</title>
+      </Helmet>
+      
       <div className="w-full max-w-5xl">
         {/* Back Button (Outside the Card) */}
         <button

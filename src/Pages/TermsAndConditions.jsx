@@ -1,9 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const TermsAndConditions = () => {
   return (
     <section className="bg-white text-gray-800 py-16 px-4 md:px-16 min-h-screen">
+    
+      <Helmet>
+        <title>Terms | ProdQuery</title>
+      </Helmet>
+
       <motion.div
         className="max-w-5xl mx-auto"
         initial={{ opacity: 0, y: 30 }}

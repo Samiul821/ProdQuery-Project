@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import useRecommendationsForMeApi from "../Api/useRecommendationsForMeApi";
 import Loading from "../components/Loading";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const RecommendatForMe = () => {
   const { user } = useAuth();
@@ -35,6 +36,10 @@ const RecommendatForMe = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
+      <Helmet>
+        <title>Recommendations For Me | ProdQuery</title>
+      </Helmet>
+
       <h2 className="text-3xl font-semibold mb-6 text-gray-800 font-poppins">
         Recommendations For Your Queries
       </h2>
