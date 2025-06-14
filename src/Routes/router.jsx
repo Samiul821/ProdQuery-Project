@@ -16,6 +16,9 @@ import Loading from "../components/Loading";
 import QueryDetails from "../PrivatePages/QueryDetails";
 import MyQueryDetails from "../PrivatePages/MyQueries/MyQueryDetails";
 import QueryUpdated from "../PrivatePages/MyQueries/QueryUpdated";
+import About from "../Pages/About";
+import FAQSection from "../components/FAQSection";
+import TermsAndConditions from "../Pages/TermsAndConditions";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +29,8 @@ const router = createBrowserRouter([
         path: "/",
         index: true,
         Component: Home,
-        loader: () => fetch('http://localhost:5000/querys/recent'),
-        hydrateFallbackElement: <Loading></Loading>
+        loader: () => fetch("http://localhost:5000/querys/recent"),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/queries",
@@ -75,11 +78,14 @@ const router = createBrowserRouter([
       },
       {
         path: "/update-query/:id",
-        element: <PrivateRoute>
-          <QueryUpdated></QueryUpdated>
-        </PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/myQueryDetails/${params.id}`),
-        hydrateFallbackElement: <Loading />
+        element: (
+          <PrivateRoute>
+            <QueryUpdated></QueryUpdated>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/myQueryDetails/${params.id}`),
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "/addQuerie",
@@ -104,6 +110,18 @@ const router = createBrowserRouter([
             <MyProfile></MyProfile>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/FAQ",
+        element: <FAQSection></FAQSection>,
+      },
+      {
+        path: "/terms",
+        element: <TermsAndConditions></TermsAndConditions>,
       },
     ],
   },

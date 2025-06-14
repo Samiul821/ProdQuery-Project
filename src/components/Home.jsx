@@ -4,7 +4,6 @@ import Slider from "./Slider";
 import OurMission from "./OurMission";
 import { useLoaderData } from "react-router-dom";
 import RecentQueryCard from "./RecentQueryCard";
-import OurValues from "./FAQSection";
 import FeaturesSection from "./Features";
 
 const Home = () => {

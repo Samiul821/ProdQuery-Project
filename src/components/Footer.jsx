@@ -1,12 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaGithub,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaGithub, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -37,18 +31,19 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="/about" className="hover:text-white">
-                About
-              </a>
-            </li>
-            <li>
               <a href="/queries" className="hover:text-white">
                 Browse Queries
               </a>
             </li>
             <li>
-              <a href="/add-query" className="hover:text-white">
-                Submit Query
+              <a href="/about" className="hover:text-white">
+                About
+              </a>
+            </li>
+
+            <li>
+              <a href="/FAQ" className="hover:text-white">
+                FAQ
               </a>
             </li>
             <li>
@@ -66,35 +61,29 @@ const Footer = () => {
           </h4>
           <div className="flex space-x-4">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/smsamiul890"
+              target="_blank"
               className="bg-gray-800 p-2 rounded-full hover:bg-blue-600 transition"
               aria-label="Facebook"
             >
               <FaFacebookF className="text-white" />
             </a>
             <a
-              href="https://twitter.com"
+              href="https://x.com/SmSamiul890" target="_blank"
               className="bg-gray-800 p-2 rounded-full hover:bg-blue-400 transition"
               aria-label="Twitter"
             >
               <FaTwitter className="text-white" />
             </a>
             <a
-              href="https://instagram.com"
-              className="bg-gray-800 p-2 rounded-full hover:bg-pink-500 transition"
-              aria-label="Instagram"
-            >
-              <FaInstagram className="text-white" />
-            </a>
-            <a
-              href="https://github.com"
+              href="https://github.com/Samiul821" target="_blank"
               className="bg-gray-800 p-2 rounded-full hover:bg-gray-600 transition"
               aria-label="GitHub"
             >
               <FaGithub className="text-white" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/samiul-islam-40942a34a" target="_blank"
               className="bg-gray-800 p-2 rounded-full hover:bg-blue-700 transition"
               aria-label="LinkedIn"
             >
