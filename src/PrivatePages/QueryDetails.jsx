@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { FaArrowLeft } from "react-icons/fa";
 
 const QueryDetails = () => {
   const query = useLoaderData();
@@ -58,7 +59,10 @@ const QueryDetails = () => {
     };
 
     axios
-      .post("https://prod-query-backend.vercel.app/recommendations", newRecommendation)
+      .post(
+        "https://prod-query-backend.vercel.app/recommendations",
+        newRecommendation
+      )
       .then((res) => {
         if (res.data.insertedId) {
           const addedRecommendation = {
@@ -82,7 +86,6 @@ const QueryDetails = () => {
         }
       })
       .catch((error) => {
-       
         Swal.fire({
           icon: "error",
           title: "Submission Failed",
@@ -95,7 +98,9 @@ const QueryDetails = () => {
   useEffect(() => {
     if (_id) {
       axios
-        .get(`https://prod-query-backend.vercel.app/recommendations?queryId=${_id}`)
+        .get(
+          `https://prod-query-backend.vercel.app/recommendations?queryId=${_id}`
+        )
         .then((res) => {
           setRecommendations(res.data);
         })
@@ -105,13 +110,22 @@ const QueryDetails = () => {
     }
   }, [_id]);
 
+  const navigate = useNavigate();
+
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-50 to-yellow-50 px-4 py-8 sm:px-6 md:px-10 lg:px-20"
+      className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-50 to-yellow-50 px-[4%] lg:px-[10%] py-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(-1)}
+        className="self-start mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-white font-semibold shadow-md hover:brightness-110 transition"
+      >
+        <FaArrowLeft /> Back
+      </button>
       <div className="max-w-6xl mx-auto rounded-3xl p-4 sm:p-6 md:p-10 shadow-xl bg-white/80 backdrop-blur-md border border-purple-200 space-y-10">
         {/* 🔷 Query Title */}
         <motion.h1
