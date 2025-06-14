@@ -19,11 +19,13 @@ import QueryUpdated from "../PrivatePages/MyQueries/QueryUpdated";
 import About from "../Pages/About";
 import FAQSection from "../components/FAQSection";
 import TermsAndConditions from "../Pages/TermsAndConditions";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

@@ -10,7 +10,7 @@ const AuthLaout = () => {
         <Navbar />
       </header>
 
-      <main className="flex-grow ">
+      <main className="flex-grow min-h-[calc(100vh-200px)]">
         <Outlet />
       </main>
 
