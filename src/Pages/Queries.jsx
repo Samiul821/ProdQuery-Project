@@ -49,7 +49,7 @@ const Queries = () => {
       </div>
 
       {/* Dropdown for layout selection */}
-      <div className="mb-8 w-full max-w-xs">
+      <div className="mb-8 hidden md:block w-full max-w-xs">
         <label
           htmlFor="columns-select"
           className="block mb-2 text-indigo-700 font-semibold"
