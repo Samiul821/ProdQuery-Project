@@ -6,9 +6,9 @@ const AllQueryCard = ({ allQuery }) => {
     allQuery;
 
   return (
-    <div className="bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-6 flex flex-col">
+    <div className="bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-4 sm:p-6 flex flex-col">
       {/* Product Image */}
-      <div className="relative w-full h-48 mb-5 rounded-xl overflow-hidden shadow-md border border-indigo-200">
+      <div className="relative w-full h-40 sm:h-48 mb-5 rounded-xl overflow-hidden shadow-md border border-indigo-200">
         <img
           src={productImageUrl}
           alt={productName || "Product Image"}

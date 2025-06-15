@@ -15,14 +15,13 @@ const Queries = () => {
 
   const gridColsClass = {
     1: "grid-cols-1",
-    2: "sm:grid-cols-2",
-    3: "sm:grid-cols-2 lg:grid-cols-3",
-    4: "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+    2: "grid-cols-1 sm:grid-cols-2",
+    3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+    4: "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
   }[columns];
 
   return (
     <div className="min-h-screen px-[4%] lg:px-[10%] py-8 bg-gradient-to-br from-slate-100 to-sky-100 font-sans text-slate-900 flex flex-col items-center">
-
       <Helmet>
         <title>All Queries | ProdQuery</title>
       </Helmet>
@@ -38,7 +37,7 @@ const Queries = () => {
       </motion.h1>
 
       {/* Search Box */}
-      <div className="mb-6 w-full max-w-md">
+      <div className="mb-6 w-full max-w-md px-2">
         <input
           type="text"
           placeholder="Search by product name..."
@@ -49,7 +48,7 @@ const Queries = () => {
       </div>
 
       {/* Dropdown for layout selection */}
-      <div className="mb-8 hidden md:block w-full max-w-xs">
+      <div className="mb-8 w-full max-w-xs px-2 hidden md:block">
         <label
           htmlFor="columns-select"
           className="block mb-2 text-indigo-700 font-semibold"
@@ -80,7 +79,7 @@ const Queries = () => {
           },
           hidden: { opacity: 0 },
         }}
-        className={`grid gap-8 w-full ${gridColsClass}`}
+        className={`grid sm:gap-8 gap-8 w-full ${gridColsClass}`}
       >
         {filteredQuerys.length > 0 ? (
           filteredQuerys.map((allQuery) => (
