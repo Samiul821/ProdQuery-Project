@@ -47,44 +47,20 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, updateData);
   };
 
-  const signIn = async (email, password) => {
+  const signIn = (email, password) => {
     setLoading(true);
-    const result = await signInWithEmailAndPassword(auth, email, password);
-    const idToken = await result.user.getIdToken();
+    return signInWithEmailAndPassword(auth, email, password);
+  }
 
-    await axios.post(
-      "https://prod-query-backend.vercel.app/sessionLogin",
-      { idToken },
-      { withCredentials: true }
-    );
+  const googleSignIn = () => {
+    return signInWithPopup(auth, googleProvider)
+  }
 
-    return result;
-  };
 
-  const googleSignIn = async () => {
-    setLoading(true);
 
-    const result = await signInWithPopup(auth, googleProvider);
-    const idToken = await result.user.getIdToken();
-
-    await axios.post(
-      "https://prod-query-backend.vercel.app/sessionLogin",
-      { idToken },
-      { withCredentials: true }
-    );
-
-    return result;
-  };
-
-  const logOut = async () => {
-    await axios.post(
-      "https://prod-query-backend.vercel.app/logout",
-      {},
-      { withCredentials: true }
-    );
+  const logOut = () => {
     return signOut(auth);
-  };
-
+  }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
