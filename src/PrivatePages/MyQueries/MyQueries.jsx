@@ -14,6 +14,7 @@ const MyQueries = () => {
   const myQueryPromise = useMyQueryApi();
 
   const [queries, setQueries] = useState([]);
+  console.log(queries);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -83,7 +83,7 @@ const MyRecommendations = () => {
         <title>My Recommendations | ProdQuery</title>
       </Helmet>
 
-      <h2 className="text-3xl font-semibold mb-6 text-gray-800 font-poppins">
+      <h2 className="text-[22px] md:text-3xl font-semibold mb-3 md:mb-6 text-gray-800 font-poppins">
         My Recommendations
       </h2>
 

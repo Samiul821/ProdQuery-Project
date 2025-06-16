@@ -56,7 +56,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 flex items-center justify-center px-[4%] lg:px-[10%]py-10">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 flex items-center justify-center px-[4%] lg:px-[10%] py-10">
     
       <Helmet>
         <title>Sign In | ProdQuery</title>

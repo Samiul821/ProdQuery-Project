@@ -20,24 +20,23 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-//  const [theme, setTheme] = useState(() => {
-//   return localStorage.getItem("theme") || "light";
-// });
+  //  const [theme, setTheme] = useState(() => {
+  //   return localStorage.getItem("theme") || "light";
+  // });
 
-// useEffect(() => {
-//   localStorage.setItem("theme", theme);
+  // useEffect(() => {
+  //   localStorage.setItem("theme", theme);
 
-//   if (theme === "dark") {
-//     document.documentElement.classList.add("dark");
-//   } else {
-//     document.documentElement.classList.remove("dark");
-//   }
-// }, [theme]);
+  //   if (theme === "dark") {
+  //     document.documentElement.classList.add("dark");
+  //   } else {
+  //     document.documentElement.classList.remove("dark");
+  //   }
+  // }, [theme]);
 
-// const toggleTheme = () => {
-//   setTheme((prev) => (prev === "light" ? "dark" : "light"));
-// };
-
+  // const toggleTheme = () => {
+  //   setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  // };
 
   const createUser = (email, password) => {
     setLoading(true);

@@ -14,7 +14,7 @@ const AuthLaout = () => {
         <Outlet />
       </main>
 
-      <footer className="px-[4%] lg:px-[10%]">
+      <footer>
         <Footer />
       </footer>
     </div>
