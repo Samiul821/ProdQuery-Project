@@ -45,7 +45,7 @@ ProdQuery is a sleek, interactive product-centric Q&A platform designed for user
 To run the project locally on your machine:
 
 ```bash
-git clone https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-Samiul821.git
+git clone https://github.com/Samiul821/ProdQuery-Project
 cd prodquery
 npm install
 npm run dev
