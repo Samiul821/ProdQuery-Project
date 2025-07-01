@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
-
+import { ThemeContext } from "../Provider/ThemeContext";
 
 const MyQueryCard = ({ query, onDelete }) => {
   const {
@@ -14,6 +14,7 @@ const MyQueryCard = ({ query, onDelete }) => {
     createdAt,
   } = query;
 
+  const { isDark } = useContext(ThemeContext);
 
   // Date formatting
   const formattedDate = createdAt
@@ -25,7 +26,11 @@ const MyQueryCard = ({ query, onDelete }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-white shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100"
+      className={`rounded-2xl overflow-hidden shadow-md transition-all duration-300 border ${
+        isDark
+          ? "bg-gray-800 border-gray-700 text-gray-200 hover:shadow-lg"
+          : "bg-white border-gray-100 text-gray-800 hover:shadow-2xl"
+      }`}
     >
       {/* Image */}
       <div className="h-48 w-full overflow-hidden">
@@ -33,19 +38,31 @@ const MyQueryCard = ({ query, onDelete }) => {
           src={productImageUrl}
           alt={productName}
           className="h-full w-full object-cover hover:scale-105 transition-transform duration-300"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "https://via.placeholder.com/300x200?text=No+Image";
+          }}
         />
       </div>
 
       {/* Content */}
       <div className="p-4 flex flex-col gap-2">
-        <h2 className="text-lg font-medium text-gray-800 font-poppins">{queryTitle}</h2>
-        <p className="text-sm text-gray-500">
+        <h2
+          className={`text-lg font-semibold line-clamp-2 font-poppins ${
+            isDark ? "text-white" : "text-gray-800"
+          }`}
+        >
+          {queryTitle}
+        </h2>
+
+        <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>
           <span className="font-medium">Product:</span> {productName} (
           {productBrand})
         </p>
 
-        {/* Created At */}
-        <p className="text-xs text-gray-400">Created: {formattedDate}</p>
+        <p className={`text-xs ${isDark ? "text-gray-500" : "text-gray-400"}`}>
+          Created: {formattedDate}
+        </p>
 
         {/* Buttons */}
         <div className="mt-4 flex flex-wrap gap-3">
