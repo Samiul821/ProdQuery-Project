@@ -8,7 +8,6 @@ import RecentQueryCard from "./RecentQueryCard";
 import FeaturesSection from "./Features";
 import { ThemeContext } from "../Provider/ThemeContext";
 import HighlightedProducts from "./HighlightedProduts";
-import Newsletter from "./Newsletter";
 
 const Home = () => {
   const recentQuery = useLoaderData();
