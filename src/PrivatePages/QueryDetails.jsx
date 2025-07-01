@@ -61,7 +61,7 @@ const QueryDetails = () => {
 
     axios
       .post(
-        "https://prod-query-backend.vercel.app/recommendations",
+        "http://localhost:5000/recommendations",
         newRecommendation
       )
       .then((res) => {
@@ -100,7 +100,7 @@ const QueryDetails = () => {
     if (_id) {
       axios
         .get(
-          `https://prod-query-backend.vercel.app/recommendations?queryId=${_id}`
+          `http://localhost:5000/recommendations?queryId=${_id}`
         )
         .then((res) => {
           setRecommendations(res.data);

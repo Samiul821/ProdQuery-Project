@@ -31,13 +31,13 @@ const router = createBrowserRouter([
         path: "/",
         index: true,
         Component: Home,
-        loader: () => fetch("https://prod-query-backend.vercel.app/querys/recent"),
+        loader: () => fetch("http://localhost:5000/querys/recent"),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/queries",
         element: <Queries></Queries>,
-        loader: () => fetch("https://prod-query-backend.vercel.app/allQuery"),
+        loader: () => fetch("http://localhost:5000/allQuery"),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://prod-query-backend.vercel.app/queryDetails/${params.id}`),
+          fetch(`http://localhost:5000/queryDetails/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://prod-query-backend.vercel.app/myQueryDetails/${params.id}`),
+          fetch(`http://localhost:5000/myQueryDetails/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://prod-query-backend.vercel.app/myQueryDetails/${params.id}`),
+          fetch(`http://localhost:5000/myQueryDetails/${params.id}`),
         hydrateFallbackElement: <Loading />,
       },
       {

@@ -43,7 +43,7 @@ const MyRecommendations = () => {
       if (reslut.isConfirmed) {
         axios
           .delete(
-            `https://prod-query-backend.vercel.app/my-recommendations/${id}`
+            `http://localhost:5000/my-recommendations/${id}`
           )
           .then((res) => {
             if (res.data.deletedCount === 1) {
@@ -52,7 +52,7 @@ const MyRecommendations = () => {
               );
 
               axios
-                .patch(`https://prod-query-backend.vercel.app/query/${queryId}`)
+                .patch(`http://localhost:5000/query/${queryId}`)
                 .then(() => {
                   console.log("Recommendation count updated!");
                 });

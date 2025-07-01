@@ -24,7 +24,7 @@ const QueryUpdated = () => {
     console.log(updatedQuery);
 
     axios
-      .put(`https://prod-query-backend.vercel.app/query/${_id}`, updatedQuery)
+      .put(`http://localhost:5000/query/${_id}`, updatedQuery)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           Swal.fire({
