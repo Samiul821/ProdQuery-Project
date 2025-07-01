@@ -4,6 +4,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -20,24 +21,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  //  const [theme, setTheme] = useState(() => {
-  //   return localStorage.getItem("theme") || "light";
-  // });
-
-  // useEffect(() => {
-  //   localStorage.setItem("theme", theme);
-
-  //   if (theme === "dark") {
-  //     document.documentElement.classList.add("dark");
-  //   } else {
-  //     document.documentElement.classList.remove("dark");
-  //   }
-  // }, [theme]);
-
-  // const toggleTheme = () => {
-  //   setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  // };
-
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -50,17 +33,20 @@ const AuthProvider = ({ children }) => {
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
-  }
+  };
+
+  const passwordReset = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
 
   const googleSignIn = () => {
-    return signInWithPopup(auth, googleProvider)
-  }
-
-
+    return signInWithPopup(auth, googleProvider);
+  };
 
   const logOut = () => {
     return signOut(auth);
-  }
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -77,6 +63,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     updateUser,
     signIn,
+    passwordReset,
     googleSignIn,
     logOut,
     loading,

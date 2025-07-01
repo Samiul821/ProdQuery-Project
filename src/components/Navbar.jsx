@@ -52,11 +52,11 @@ const Navbar = () => {
 
   return (
     <nav
-       className={`${
-    isDark
-      ? "fixed top-0 left-0 right-0 bg-gray-900 shadow-md z-50 text-gray-300 border-b border-gray-700"
-      : "fixed top-0 left-0 right-0 bg-gray-100 shadow-md z-50 text-gray-800 border-b border-gray-300"
-  }`}
+      className={`${
+        isDark
+          ? "fixed top-0 left-0 right-0 bg-gray-900 shadow-md z-50 text-gray-300 border-b border-gray-700"
+          : "fixed top-0 left-0 right-0 bg-gray-100 shadow-md z-50 text-gray-800 border-b border-gray-300"
+      }`}
     >
       <div className="px-[4%] lg:px-[10%]">
         <div className="flex justify-between items-center h-16">
@@ -75,18 +75,18 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink to="/queries" className={getNavLinkClass}>
-              Queries
+              Query
             </NavLink>
             {user && (
               <>
                 <NavLink to="/myQueries" className={getNavLinkClass}>
-                  My Queries
+                  Mine
                 </NavLink>
                 <NavLink to="/myRecommendations" className={getNavLinkClass}>
-                  My Recommendations
+                  My Recs
                 </NavLink>
                 <NavLink to="/recommendationsForMe" className={getNavLinkClass}>
-                  Recommendations For Me
+                  For Me
                 </NavLink>
               </>
             )}
@@ -109,7 +109,7 @@ const Navbar = () => {
             {!user ? (
               <Link
                 to="/auth/signIn"
-                className="inline-block px-6 py-2 rounded-md bg-cyan-600 text-white font-semibold hover:bg-cyan-500 shadow-md transition duration-300"
+                className="inline-block px-6 py-2 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md transition duration-300"
               >
                 Login
               </Link>
@@ -181,8 +181,8 @@ const Navbar = () => {
           <div className="lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded ${
-                isDark ? "text-cyan-300" : "text-gray-700"
+              className={`focus:outline-none focus:ring-2 focus:ring-indigo-700 rounded ${
+                isDark ? "text-indigo-600" : "text-gray-700"
               }`}
             >
               {isOpen ? <FaTimes size={26} /> : <FaBars size={26} />}
@@ -230,8 +230,8 @@ const Navbar = () => {
                       isActive
                         ? "bg-cyan-600 text-white"
                         : isDark
-                        ? "hover:bg-gray-700 hover:text-cyan-300"
-                        : "hover:bg-cyan-50 hover:text-cyan-600"
+                        ? "hover:bg-gray-700 hover:text-indigo-600"
+                        : "hover:bg-cyan-50 hover:text-indigo-700"
                     }`
                   }
                 >
@@ -243,7 +243,7 @@ const Navbar = () => {
                 <NavLink
                   to="/auth/signIn"
                   onClick={() => setIsOpen(false)}
-                  className="block px-5 py-3 rounded-md bg-cyan-600 text-white font-semibold hover:bg-cyan-500 transition duration-300"
+                  className="block px-5 py-3 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition duration-300"
                 >
                   Login
                 </NavLink>
