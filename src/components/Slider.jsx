@@ -8,35 +8,33 @@ const sliderData = [
     id: 1,
     image:
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80",
-    title: "Find the Best Products",
-    description: "Discover user queries & honest reviews for informed choices.",
-    buttonText: "Explore Queries",
+    title: "Raise Awareness, Boycott Wisely",
+    description:
+      "Explore community-raised concerns about unethical products and choose alternatives that align with your values.",
   },
   {
     id: 2,
     image:
       "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1470&q=80",
-    title: "Boycott with Confidence",
+    title: "Boycott with Purpose",
     description:
-      "Know which products to avoid and why, powered by the community.",
-    buttonText: "Learn More",
+      "Find out which brands support injustice and make informed choices backed by real user insights.",
   },
   {
     id: 3,
     image:
       "https://images.unsplash.com/photo-1556761175-129418cb2dfe?auto=format&fit=crop&w=1470&q=80",
-    title: "Empowering Consumers",
-    description: "Your voice matters — share your queries and help others.",
-    buttonText: "Start Sharing",
+    title: "Your Voice Can Make a Change",
+    description:
+      "Share your product concerns with the community and recommend better, ethical alternatives.",
   },
   {
     id: 4,
     image:
       "https://images.unsplash.com/photo-1556761175-129418cb2dfe?auto=format&fit=crop&w=1470&q=80",
-    title: "Community Verified Data",
+    title: "Verified by the People",
     description:
-      "All product data is verified by users — honest, unbiased and up-to-date.",
-    buttonText: "Join the Movement",
+      "All boycott reasons and suggestions are user-generated — ensuring honesty, transparency, and relevance.",
   },
 ];
 
@@ -55,10 +53,13 @@ const ModernSlider = () => {
   };
 
   return (
-    <div className=" rounded-lg overflow-hidden shadow-2xl">
+    <div className="rounded-lg max-h-[70vh] h-auto overflow-hidden shadow-2xl">
       <Slider {...settings}>
         {sliderData.map((slide) => (
-          <div key={slide.id} className="relative h-96 md:h-[500px]">
+          <div
+            key={slide.id}
+            className="relative h-[65vh] sm:h-[70vh] md:h-[75vh] lg:h-[80vh]"
+          >
             {/* Background image */}
             <div
               className="absolute inset-0 bg-cover bg-center filter brightness-75"
@@ -68,19 +69,13 @@ const ModernSlider = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col justify-center h-full px-8 md:px-24 text-white max-w-3xl">
-              <h2 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg tracking-wide font-poppins">
+            <div className="relative z-10 flex flex-col justify-center items-start h-full px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 text-white text-left max-w-4xl">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 drop-shadow-lg tracking-wide font-poppins">
                 {slide.title}
               </h2>
-              <p className="mb-8 text-lg md:text-xl leading-relaxed drop-shadow-md">
+              <p className="mb-6 sm:mb-8 text-base sm:text-lg md:text-xl leading-relaxed drop-shadow-md">
                 {slide.description}
               </p>
-              <button
-                className="self-start bg-green-600 hover:bg-green-700 transition rounded-full py-3 px-8 font-semibold shadow-lg active:scale-95"
-                onClick={() => alert(`Clicked: ${slide.buttonText}`)}
-              >
-                {slide.buttonText}
-              </button>
             </div>
           </div>
         ))}

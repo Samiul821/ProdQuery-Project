@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronDown } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import { ThemeContext } from "../Provider/ThemeContext"; // থিম কনটেক্সট
 
 const faqs = [
   {
@@ -27,6 +28,7 @@ const faqs = [
 ];
 
 const FAQSection = () => {
+  const { isDark } = useContext(ThemeContext);
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -34,8 +36,11 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="bg-gray-100 py-16 px-4 md:px-12 lg:px-32">
-
+    <section
+      className={`py-16 min-h-screen px-4 md:px-12 lg:px-32 transition-colors duration-300 ${
+        isDark ? "bg-gray-900" : "bg-gray-100"
+      }`}
+    >
       <Helmet>
         <title>FAQ | ProdQuery</title>
       </Helmet>
@@ -45,10 +50,14 @@ const FAQSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-4xl mx-auto text-center"
+        className={`max-w-4xl mx-auto text-center ${
+          isDark ? "text-gray-300" : "text-gray-800"
+        }`}
       >
-        <h2 className="text-4xl font-bold mb-6 text-gray-800 font-poppins">Frequently Asked Questions</h2>
-        <p className="text-gray-600 mb-12">
+        <h2 className="text-4xl font-bold mb-6 font-poppins">
+          Frequently Asked Questions
+        </h2>
+        <p className={`${isDark ? "text-gray-400" : "text-gray-600"} mb-12`}>
           Get answers to common questions about using our platform.
         </p>
 
@@ -60,11 +69,15 @@ const FAQSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-white p-5 rounded-lg shadow"
+              className={`p-5 rounded-lg shadow transition-colors duration-300 ${
+                isDark
+                  ? "bg-gray-800 text-gray-300 shadow-gray-700"
+                  : "bg-white text-gray-700"
+              }`}
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center font-medium text-gray-700"
+                className="w-full flex justify-between items-center font-medium"
               >
                 <span>{faq.question}</span>
                 <motion.div animate={{ rotate: openIndex === index ? 180 : 0 }}>
@@ -78,7 +91,9 @@ const FAQSection = () => {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="overflow-hidden mt-3 text-gray-600"
+                    className={`${
+                      isDark ? "text-gray-400" : "text-gray-600"
+                    } overflow-hidden mt-3`}
                   >
                     <p>{faq.answer}</p>
                   </motion.div>

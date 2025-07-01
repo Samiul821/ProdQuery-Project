@@ -28,7 +28,7 @@ const AddQueries = () => {
     };
 
     axios
-      .post("http://localhost:5000/query", newQuery)
+      .post("https://prod-query-backend.vercel.app/query", newQuery)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

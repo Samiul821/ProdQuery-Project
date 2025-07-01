@@ -8,6 +8,10 @@ import AuthProvider from "./Provider/AuthProvider.jsx";
 import { ToastContainer } from "react-toastify";
 import { HelmetProvider } from "react-helmet-async";
 import ThemeProvider from "./Provider/ThemeContext.jsx";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
+Aos.init();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

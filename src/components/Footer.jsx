@@ -15,7 +15,7 @@ const Footer = () => {
       }`}
     >
       <motion.div
-        className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto"
+        className="grid md:grid-cols-3 gap-10"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

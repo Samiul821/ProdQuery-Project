@@ -53,7 +53,7 @@ const MyQueries = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/query/${_id}`).then((res) => {
+        axios.delete(`https://prod-query-backend.vercel.app/query/${_id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             const remaining = queries.filter((q) => q._id !== _id);
             setQueries(remaining);
@@ -146,6 +146,7 @@ const MyQueries = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {paginatedQueries.map((query) => (
                 <MyQueryCard
+              
                   key={query._id}
                   query={query}
                   onDelete={handleDelete}

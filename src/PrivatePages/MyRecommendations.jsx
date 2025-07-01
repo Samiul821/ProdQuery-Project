@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { motion } from "framer-motion";
 import useAuth from "../hooks/useAuth";
 import useMyRecommendationApi from "../Api/useMyRecommendationApi";
-import RecommendationItem from "../components/RecommendationItem ";
 import Loading from "../components/Loading";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
+import { ThemeContext } from "../Provider/ThemeContext";
+import RecommendationItem from "../components/RecommendationItem ";
 
 const MyRecommendations = () => {
   const { user } = useAuth();
   const myRecommendationsPromise = useMyRecommendationApi();
+  const { isDark } = useContext(ThemeContext);
 
   const [recommendations, setRecommendations] = useState([]);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,23 +40,19 @@ const MyRecommendations = () => {
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
       confirmButtonText: "Yes, delete it!",
-    }).then((reslut) => {
-      if (reslut.isConfirmed) {
+    }).then((result) => {
+      if (result.isConfirmed) {
         axios
-          .delete(
-            `http://localhost:5000/my-recommendations/${id}`
-          )
+          .delete(`https://prod-query-backend.vercel.app/my-recommendations/${id}`)
           .then((res) => {
             if (res.data.deletedCount === 1) {
               setRecommendations((prev) =>
                 prev.filter((rec) => rec._id !== id)
               );
 
-              axios
-                .patch(`http://localhost:5000/query/${queryId}`)
-                .then(() => {
-                  console.log("Recommendation count updated!");
-                });
+              axios.patch(`https://prod-query-backend.vercel.app/query/${queryId}`).then(() => {
+                console.log("Recommendation count updated!");
+              });
 
               Swal.fire(
                 "Deleted!",
@@ -74,7 +71,11 @@ const MyRecommendations = () => {
 
   return (
     <motion.div
-      className="min-h-screen px-[4%] lg:px-[10%] py-8 bg-gradient-to-tr from-blue-50 via-purple-50 to-pink-50 flex flex-col items-center"
+      className={`min-h-screen px-[4%] lg:px-[10%] py-8 flex flex-col items-center transition-colors duration-300 ${
+        isDark
+          ? "bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-900 text-gray-100"
+          : "bg-gradient-to-tr from-blue-50 via-purple-50 to-pink-50 text-gray-900"
+      }`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -83,7 +84,11 @@ const MyRecommendations = () => {
         <title>My Recommendations | ProdQuery</title>
       </Helmet>
 
-      <h2 className="text-[22px] md:text-3xl font-semibold mb-3 md:mb-6 text-gray-800 font-poppins">
+      <h2
+        className={`text-[22px] md:text-3xl font-semibold mb-6 font-poppins ${
+          isDark ? "text-gray-200" : "text-gray-800"
+        }`}
+      >
         My Recommendations
       </h2>
 
@@ -91,8 +96,18 @@ const MyRecommendations = () => {
         <p className="text-center text-gray-500">No recommendations found.</p>
       ) : (
         <div className="overflow-x-auto w-full">
-          <table className="table-auto w-full min-w-[600px] border-collapse border border-gray-200 text-sm md:text-base">
-            <thead className="bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100">
+          <table
+            className={`table-auto w-full min-w-[600px] border-collapse border ${
+              isDark ? "border-gray-700" : "border-gray-200"
+            } text-sm md:text-base`}
+          >
+            <thead
+              className={`${
+                isDark
+                  ? "bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 text-gray-200"
+                  : "bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 text-gray-700"
+              }`}
+            >
               <tr>
                 {[
                   "#",
@@ -103,13 +118,14 @@ const MyRecommendations = () => {
                 ].map((title) => (
                   <th
                     key={title}
-                    className="border border-gray-300 text-left px-3 py-2 md:px-4 md:py-3 text-gray-700 font-medium whitespace-nowrap"
+                    className="border border-gray-300 text-left px-3 py-2 md:px-4 md:py-3 font-medium whitespace-nowrap"
                   >
                     {title}
                   </th>
                 ))}
               </tr>
             </thead>
+
             <tbody
               as={motion.tbody}
               initial="hidden"
@@ -131,6 +147,7 @@ const MyRecommendations = () => {
                   rec={rec}
                   index={index}
                   onDelete={handleDelete}
+                  isDark={isDark}
                 />
               ))}
             </tbody>

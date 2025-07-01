@@ -52,11 +52,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${
-        isDark
-          ? "bg-gray-900 text-gray-300 border-b border-gray-700"
-          : "bg-gray-50 text-gray-800"
-      }`}
+       className={`${
+    isDark
+      ? "fixed top-0 left-0 right-0 bg-gray-900 shadow-md z-50 text-gray-300 border-b border-gray-700"
+      : "fixed top-0 left-0 right-0 bg-gray-100 shadow-md z-50 text-gray-800 border-b border-gray-300"
+  }`}
     >
       <div className="px-[4%] lg:px-[10%]">
         <div className="flex justify-between items-center h-16">

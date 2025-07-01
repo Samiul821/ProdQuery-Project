@@ -23,6 +23,8 @@ const MyQueryCard = ({ query, onDelete }) => {
 
   return (
     <motion.div
+      data-aos="fade-up"
+      data-aos-duration="2000"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
