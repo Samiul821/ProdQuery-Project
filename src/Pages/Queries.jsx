@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { motion } from "framer-motion";
 import AllQueryCard from "../components/AllQueryCard";
 import { Helmet } from "react-helmet-async";
+import { ThemeContext } from "../Provider/ThemeContext";
 
 const Queries = () => {
   const allQuerys = useLoaderData();
+  const { isDark } = useContext(ThemeContext);
+
   const [searchText, setSearchText] = useState("");
-  const [columns, setColumns] = useState(3);
+  const [columns, setColumns] = useState(4);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   const filteredQuerys = allQuerys.filter((query) =>
     query.productName?.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredQuerys.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedQueries = filteredQuerys.slice(
+    startIndex,
+    startIndex + itemsPerPage
   );
 
   const gridColsClass = {
@@ -21,7 +33,13 @@ const Queries = () => {
   }[columns];
 
   return (
-    <div className="min-h-screen px-[4%] lg:px-[10%] py-8 bg-gradient-to-br from-slate-100 to-sky-100 font-sans text-slate-900 flex flex-col items-center">
+    <div
+      className={`min-h-screen px-[4%] lg:px-[10%] py-8 font-sans flex flex-col items-center transition duration-300 ${
+        isDark
+          ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100"
+          : "bg-gradient-to-br from-slate-100 to-sky-100 text-slate-900"
+      }`}
+    >
       <Helmet>
         <title>All Queries | ProdQuery</title>
       </Helmet>
@@ -31,7 +49,11 @@ const Queries = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl font-extrabold mb-4 text-center bg-gradient-to-r from-indigo-600 to-blue-400 bg-clip-text text-transparent font-poppins"
+        className={`text-4xl font-extrabold mb-6 text-center font-poppins bg-clip-text ${
+          isDark
+            ? "text-transparent bg-gradient-to-r from-indigo-400 to-blue-300"
+            : "text-transparent bg-gradient-to-r from-indigo-600 to-blue-400"
+        }`}
       >
         All The Queries ({filteredQuerys.length})
       </motion.h1>
@@ -42,16 +64,25 @@ const Queries = () => {
           type="text"
           placeholder="Search by product name..."
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          className="w-full px-4 py-2 rounded-full border border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md"
+          onChange={(e) => {
+            setSearchText(e.target.value);
+            setCurrentPage(1);
+          }}
+          className={`w-full px-4 py-2 rounded-full border shadow-md focus:outline-none focus:ring-2 ${
+            isDark
+              ? "bg-gray-800 text-gray-200 border-gray-600 focus:ring-indigo-400 placeholder-gray-400"
+              : "bg-white text-gray-800 border-indigo-300 focus:ring-indigo-400"
+          }`}
         />
       </div>
 
-      {/* Dropdown for layout selection */}
+      {/* Column Selector */}
       <div className="mb-8 w-full max-w-xs px-2 hidden md:block">
         <label
           htmlFor="columns-select"
-          className="block mb-2 text-indigo-700 font-semibold"
+          className={`block mb-2 font-semibold ${
+            isDark ? "text-gray-300" : "text-indigo-700"
+          }`}
         >
           Select Layout Columns:
         </label>
@@ -59,7 +90,11 @@ const Queries = () => {
           id="columns-select"
           value={columns}
           onChange={(e) => setColumns(Number(e.target.value))}
-          className="w-full px-4 py-2 rounded-md border border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-md"
+          className={`w-full px-4 py-2 rounded-md border shadow-md focus:outline-none focus:ring-2 ${
+            isDark
+              ? "bg-gray-800 text-gray-200 border-gray-600 focus:ring-indigo-400"
+              : "bg-white text-gray-800 border-indigo-300 focus:ring-indigo-400"
+          }`}
         >
           <option value={1}>1 Column</option>
           <option value={2}>2 Columns</option>
@@ -68,7 +103,7 @@ const Queries = () => {
         </select>
       </div>
 
-      {/* Grid of Cards */}
+      {/* Grid */}
       <motion.div
         initial="hidden"
         animate="visible"
@@ -79,10 +114,10 @@ const Queries = () => {
           },
           hidden: { opacity: 0 },
         }}
-        className={`grid sm:gap-8 gap-8 w-full ${gridColsClass}`}
+        className={`grid gap-8 w-full ${gridColsClass}`}
       >
-        {filteredQuerys.length > 0 ? (
-          filteredQuerys.map((allQuery) => (
+        {paginatedQueries.length > 0 ? (
+          paginatedQueries.map((allQuery) => (
             <motion.div
               key={allQuery._id}
               variants={{
@@ -91,20 +126,73 @@ const Queries = () => {
               }}
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 15px 30px rgba(99, 102, 241, 0.3)",
+                boxShadow: isDark
+                  ? "0 15px 30px rgba(99, 102, 241, 0.4)"
+                  : "0 15px 30px rgba(99, 102, 241, 0.2)",
               }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="rounded-xl bg-white p-6 shadow-lg cursor-pointer flex flex-col"
+              className={`rounded-xl p-6 shadow-lg cursor-pointer flex flex-col transition h-full ${
+                isDark
+                  ? "bg-gray-800 border border-gray-700 text-gray-100"
+                  : "bg-white border border-gray-200 text-gray-800"
+              }`}
             >
               <AllQueryCard allQuery={allQuery} />
             </motion.div>
           ))
         ) : (
-          <p className="text-center col-span-full text-gray-500 text-lg mt-10">
+          <p className="text-center col-span-full text-gray-400 text-lg mt-10">
             No queries found for "{searchText}"
           </p>
         )}
       </motion.div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="mt-10 flex justify-center items-center gap-2 flex-wrap">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 rounded-full font-medium transition ${
+              isDark
+                ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
+                : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200"
+            } disabled:opacity-50`}
+          >
+            Prev
+          </button>
+
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index + 1)}
+              className={`px-4 py-2 rounded-full font-semibold transition border ${
+                currentPage === index + 1
+                  ? "bg-indigo-600 text-white"
+                  : isDark
+                  ? "bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700"
+                  : "bg-white text-gray-800 border-gray-300 hover:bg-indigo-100"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 rounded-full font-medium transition ${
+              isDark
+                ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
+                : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200"
+            } disabled:opacity-50`}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };
