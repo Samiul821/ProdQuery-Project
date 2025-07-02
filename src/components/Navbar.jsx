@@ -260,7 +260,7 @@ const Navbar = () => {
                   >
                     Profile
                   </NavLink>
-                  <NavLink
+                  {/* <NavLink
                     to="/dashboard"
                     onClick={() => setIsOpen(false)}
                     className={`block px-5 py-3 text-sm ${
@@ -270,7 +270,7 @@ const Navbar = () => {
                     }`}
                   >
                     Dashboard
-                  </NavLink>
+                  </NavLink> */}
                   <button
                     onClick={() => {
                       handleLogout();
