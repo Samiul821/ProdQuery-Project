@@ -151,7 +151,7 @@ const Navbar = () => {
                     >
                       Profile
                     </Link>
-                    <Link
+                    {/* <Link
                       to="/dashboard"
                       className={`block px-4 py-2 text-sm ${
                         isDark
@@ -160,7 +160,7 @@ const Navbar = () => {
                       }`}
                     >
                       Dashboard
-                    </Link>
+                    </Link> */}
                     <button
                       onClick={handleLogout}
                       className={`w-full text-left px-4 py-2 text-sm ${
