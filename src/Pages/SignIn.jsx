@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet-async";
-import { ThemeContext } from "../Provider/ThemeContext"; // import added
+import { ThemeContext } from "../Provider/ThemeContext";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
