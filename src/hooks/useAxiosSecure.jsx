@@ -16,14 +16,6 @@ const useAxiosSecure = () => {
      return config
   })
 
-  // axiosIntance.interceptors.request.use(async (config) => {
-  //   if (user) {
-  //     const token = await user.getIdToken(); 
-  //     config.headers.authorization = `Bearer ${token}`;
-  //   }
-  //   return config;
-  // });
-
   axiosIntance.interceptors.response.use(
     (response) => {
       return response;
