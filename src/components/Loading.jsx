@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../Provider/ThemeContext"; // 🔥 Add this
+import { ThemeContext } from "../Provider/ThemeContext";
 
 const UniqueSpinner = () => {
-  const { isDark } = useContext(ThemeContext); // 🔥 Get isDark from context
-
+  const { isDark } = useContext(ThemeContext);
   return (
     <div
       className={`fixed inset-0 flex justify-center items-center z-50 transition-colors duration-300 ${

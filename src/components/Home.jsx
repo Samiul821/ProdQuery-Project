@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-
 import Slider from "./Slider";
 import OurMission from "./OurMission";
 import RecentQueryCard from "./RecentQueryCard";
@@ -83,7 +82,6 @@ const Home = () => {
       <section data-aos="fade-up" data-aos-duration="2000">
         <OurMission />
       </section>
-  
     </main>
   );
 };

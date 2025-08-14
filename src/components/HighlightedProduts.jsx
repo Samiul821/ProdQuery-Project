@@ -74,7 +74,6 @@ const HighlightedProducts = () => {
                 Brand: {item.productBrand}
               </p>
 
-              {/* Short Description (queryTitle or boycottReason truncated) */}
               <p
                 className={`mb-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}
               >
