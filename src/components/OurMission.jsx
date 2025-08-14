@@ -6,7 +6,6 @@ import { ThemeContext } from "../Provider/ThemeContext";
 const OurMission = () => {
   const { isDark } = useContext(ThemeContext);
 
-  // Overlay styles differ based on mode
   const overlayLight =
     "linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0,0,0,0.2))";
   const overlayDark =
@@ -47,16 +46,13 @@ const OurMission = () => {
           </p>
         </motion.div>
 
-        {/* Empty space for balance on md+ screens */}
         <motion.div
           className="md:w-1/2 hidden md:block"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Decorative SVG or image can be added here if needed */}
-        </motion.div>
+        ></motion.div>
       </div>
     </section>
   );
