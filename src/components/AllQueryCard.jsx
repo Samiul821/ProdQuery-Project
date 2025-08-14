@@ -14,7 +14,7 @@ const AllQueryCard = ({ allQuery }) => {
         isDark
           ? "bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 border-gray-700 text-gray-100"
           : "bg-gradient-to-r from-purple-50 via-indigo-50 to-blue-50 border-indigo-200 text-gray-900"
-      } min-h-[440px]`} // ✅ Fixed height
+      } min-h-[440px]`}
     >
       {/* Product Image */}
       <div className="relative w-full h-36 sm:h-44 md:h-48 mb-4 rounded-xl overflow-hidden shadow-sm border border-gray-300">
