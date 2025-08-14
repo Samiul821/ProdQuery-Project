@@ -14,7 +14,7 @@ import { ThemeContext } from "../Provider/ThemeContext";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { signIn, googleSignIn, passwordReset } = useContext(AuthContext);
-  const { isDark } = useContext(ThemeContext); // context used
+  const { isDark } = useContext(ThemeContext);
   const navigate = useNavigate();
   const location = useLocation();
 
