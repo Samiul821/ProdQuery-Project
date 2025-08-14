@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import { ThemeContext } from "../Provider/ThemeContext"; // থিম কনটেক্সট
+import { ThemeContext } from "../Provider/ThemeContext";
 
 const About = () => {
   const { isDark } = useContext(ThemeContext);
