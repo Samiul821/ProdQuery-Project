@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import { ThemeContext } from "../Provider/ThemeContext"; // 🔥 Import context
+import { ThemeContext } from "../Provider/ThemeContext";
 
 const TermsAndConditions = () => {
-  const { isDark } = useContext(ThemeContext); // 🔥 Access isDark
+  const { isDark } = useContext(ThemeContext);
 
   return (
     <section
